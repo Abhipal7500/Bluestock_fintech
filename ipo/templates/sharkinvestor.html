@@ -1,0 +1,119 @@
+<!-- home.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    /* Custom styles for the page */
+    body {
+        background-color: #eceef4; /* Adjust the background color */
+    }
+    .breadcrumb-container {
+        margin-top: 40px; /* Adjust the margin as needed */
+    }
+    .breadcrumb {
+        background-color: transparent;
+        padding: 0;
+    }
+    .search-bar-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px; /* Adjust the margin as needed */
+    }
+    .search-bar {
+        max-width: 300px;
+        background-color: #eceef4;
+        border: 1px solid gray; /* Adjust the width and style of the search bar */
+    }
+    .breadcrumb-item.active {
+        color: blue;
+    }
+    .card-body {
+       padding-top: 3px; /* Adjust padding for content inside each card */
+        text-align: left; /* Align text left */
+    }
+    .card-img-top {
+        max-width: 100%; /* Reduce image width */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: cover; /* Ensure the image covers the entire space */
+    }
+</style>
+
+<div class="container">
+    <!-- Breadcrumb and Search Bar -->
+    <div class="breadcrumb-container row">
+        <div class="col-md-6">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Shark Investor</li>
+                </ol>
+            </nav>
+            <h2 style="color: black; font-weight: bold;">Shark Investors</h2>
+            <p style="font-size: small; color: black;">Look into the portfolio of these Super Investors to find out their favourite stocks.</p>
+        </div>
+        <div class="col-md-6 search-bar-container">
+            <div>
+                <label for="searchBar" class="form-label mx-1">Search by Name</label>
+                <input type="text" class="form-control search-bar" placeholder="e.g., Abhishek" id="searchBar">
+            </div>
+        </div>
+    </div>
+
+    <!-- Investor Cards -->
+    <div class="row mt-5" id="investorCards">
+        <div class="col-md-3">
+            <div class="card">
+                <div style="margin: 25px;">
+                <img src="{% static 'ipo/assets/sharkinvestor/Rakesh Jhunjhunwala.png' %}" class="card-img-top investor-img" alt="Rakesh Jhunjhunwala">
+            </div>
+            <h6 class="card-title text-center" style="font-weight:bold;">Rakesh Jhunjhunwala</h6>
+                <div class="card-body">
+                    
+                    <p class="card-text" style="font-size: 12px;margin-left:10px ;">He started investment in the 90's. His investment strategy...</p>
+                   <div class="text-center"><a href="#" class="btn btn-primary">View Holdings</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div style="margin: 25px;">
+                <img src="{% static 'ipo/assets/sharkinvestor/Rakesh Jhunjhunwala.png' %}" class="card-img-top investor-img" alt="Rakesh Jhunjhunwala">
+            </div>
+            <h6 class="card-title text-center" style="font-weight:bold;">Rakesh Jhunjhunwala</h6>
+                <div class="card-body">
+                    
+                    <p class="card-text" style="font-size: 12px;margin-left:10px ;">He started investment in the 90's. His investment strategy...</p>
+                   <div class="text-center"><a href="#" class="btn btn-primary">View Holdings</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div style="margin: 25px;">
+                <img src="{% static 'ipo/assets/sharkinvestor/Rakesh Jhunjhunwala.png' %}" class="card-img-top investor-img" alt="Rakesh Jhunjhunwala">
+            </div>
+            <h6 class="card-title text-center" style="font-weight:bold;">Rakesh Jhunjhunwala</h6>
+                <div class="card-body">
+                    
+                    <p class="card-text" style="font-size: 12px;margin-left:10px ;">He started investment in the 90's. His investment strategy...</p>
+                   <div class="text-center"><a href="#" class="btn btn-primary">View Holdings</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div style="margin: 25px;">
+                <img src="{% static 'ipo/assets/sharkinvestor/Rakesh Jhunjhunwala.png' %}" class="card-img-top investor-img" alt="Rakesh Jhunjhunwala">
+            </div>
+            <h6 class="card-title text-center" style="font-weight:bold;">Rakesh Jhunjhunwala</h6>
+                <div class="card-body">
+                    
+                    <p class="card-text" style="font-size: 12px;margin-left:10px ;">He started investment in the 90's. His investment strategy...</p>
+                   <div class="text-center"><a href="#" class="btn btn-primary">View Holdings</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- Add more investor cards here -->
+    </div>
+</div>
+{% endblock %}

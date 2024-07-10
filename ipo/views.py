@@ -9,4 +9,7 @@ def upcomming(request):
 
 def sharkinvestor(request):
     return render(request,'sharkinvestor.html')
+
+def Allbrokers(request):
+    return render(request,'Allbrokers.html')
     

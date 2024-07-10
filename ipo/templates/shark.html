@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shark Investors</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .investor-card {
+            margin: 15px;
+        }
+        .investor-img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mt-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Shark Investors</li>
+            </ol>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-md-6 offset-md-6">
+                <input type="text" class="form-control" placeholder="Search by Name" id="searchBar">
+            </div>
+        </div>
+
+        <!-- Page Title -->
+        <h1 class="text-center my-5">Shark Investors</h1>
+
+        <!-- Investor Cards -->
+        <div class="row" id="investorCards">
+            <div class="col-md-3 investor-card">
+                <div class="card">
+                    <img src="path/to/rakesh_jhunjhunwala.jpg" class="card-img-top investor-img" alt="Rakesh Jhunjhunwala">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Rakesh Jhunjhunwala</h5>
+                        <p class="card-text">He started investment in the 90's. His investment strategy...</p>
+                        <a href="#" class="btn btn-primary">View Holdings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 investor-card">
+                <div class="card">
+                    <img src="path/to/anil_goel.jpg" class="card-img-top investor-img" alt="Anil Goel">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Anil Goel</h5>
+                        <p class="card-text">He started investment in the 90's. His investment strategy...</p>
+                        <a href="#" class="btn btn-primary">View Holdings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 investor-card">
+                <div class="card">
+                    <img src="path/to/ashish_dhawan.jpg" class="card-img-top investor-img" alt="Ashish Dhawan">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ashish Dhawan</h5>
+                        <p class="card-text">He started investment in the 90's. His investment strategy...</p>
+                        <a href="#" class="btn btn-primary">View Holdings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 investor-card">
+                <div class="card">
+                    <img src="path/to/ashish_kacholia.jpg" class="card-img-top investor-img" alt="Ashish Kacholia">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ashish Kacholia</h5>
+                        <p class="card-text">He started investment in the 90's. His investment strategy...</p>
+                        <a href="#" class="btn btn-primary">View Holdings</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more investor cards here -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

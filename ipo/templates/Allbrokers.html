@@ -1,0 +1,248 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-color: #f9f9f9;
+        color: #333;
+    }
+    .comparison-container {
+        margin-top: 20px;
+    }
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #dae3ff;
+        display: flex;
+        flex-direction: row;
+    }
+    .card-header, .card-body, .card-footer {
+        background-color: #dae3ff;
+        border: none;
+    }
+    .card-header, .card-footer {
+        flex: 1;
+    }
+    .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0%;
+    }
+    .card-footer p, .card-header p, .card-body ul li {
+        font-weight: 600;
+    }
+    .btn {
+        margin-top: 10px;
+    }
+    .ratings i {
+        color: gold;
+    }
+    .list-group i {
+        color: green;
+    }
+    .list-group-item {
+        border: none;
+        padding-left: 0;
+        display: flex;
+        align-items: center;
+    }
+    .list-group-item i {
+        margin-right: 10px;
+    }
+    .info-icon {
+        margin-left: 5px;
+        color: gray;
+    }
+    .card img {
+        max-width: 100px;
+        border-radius: 10px;
+    }
+    .text-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .card img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            flex-direction: column;
+        }
+        .card-header, .card-footer {
+            text-align: center;
+           
+        }
+        .card-body {
+            padding: 10px;
+        }
+        .card img {
+            max-width: 50%;
+        }
+        .d-flex {
+            flex-direction: row;
+            align-items: center;
+        }
+        .d-flex .btn {
+            margin: 5px 0;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .comparison-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .Reviews{
+            display: flex;
+        }
+        .card {
+            width: 90%;
+            margin: 10px 0;
+        }
+        .card-body, .card-footer {
+            display: flex;
+            flex-wrap: wrap; /* Ensure items wrap onto new line */
+            justify-content: center; /* Center items horizontally */
+            align-items: center; /* Center items vertically */
+            text-align: center;
+        }
+        .card-body ul {
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around; /* Adjusted to space items evenly */
+            flex-wrap: wrap; /* Allows items to wrap onto the next line */
+        }
+        .card-body ul li {
+            list-style: none;
+            font-size: x-small;
+            flex: 1 1 5%; /* Adjust as needed for item spacing */
+        }
+        .img-footer {
+            max-width: 0px;
+            max-height: 0px;
+            display: none;
+            border: none;
+        }
+        .card-footer p {
+            font-size: x-small;
+            flex: 1 1 30%; /* Adjust as needed for item spacing */
+            margin-bottom: 5px; /* Add space between items */
+        }
+    }
+</style>
+
+<!-- card 1 -->
+<div class="container">
+    <h1 class="text-center">Made to Trade</h1>
+    <div class="comparison-container">
+        <div class="card">
+            <div class="card-header">
+                <div class="text-header">
+                    <h3 class="m-0">Upstox</h3>
+                    <div class="ratings">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="Reviews">
+                    <p><i class="fas fa-comments"></i> 15K Reviews</p>
+                    <p><i class="fas fa-user"></i> 50.2K Accounts</p>
+                </div>
+                    <p>Open Demat A/c for FREE</p>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-primary mx-1">Open A/C</a>
+                        <a href="#" class="btn btn-outline-primary ml-2">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Equity</li>
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Commodity</li>
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Currency</li>
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Futures</li>
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Options</li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <p class="mb-1">A/C Opening Charge</p>
+                <span style="font-size: x-small; font-weight:600;">₹0</span>
+                <p class="mb-1">Maintenance Charge</p>
+                <span style="font-size: x-small; font-weight:600;"> ₹300 <i class="fa-solid fa-circle-info"></i></span>
+                <p class="mb-1">Delivery Brokerage</p>
+                <span style="font-size: x-small; font-weight:600;">₹20 <i class="fa-solid fa-circle-info"></i></span>
+                <p class="mb-1">Intraday Brokerage</p>
+                <s style="font-size: x-small; font-weight:600;"> ₹20 <i class="fa-solid fa-circle-info"></i></s>
+            </div>
+            <div class="card-footer img-footer" style="display: flex; align-items: center; justify-content: center;">
+                <div style="height: 200px; width: 200px;"> <img src="{% static 'ipo/assets/Allbroker_img/upstock.png' %}" alt="Upstox"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- card 2 -->
+<div class="container">
+    <div class="comparison-container">
+        <div class="card">
+            <div class="card-header">
+                <div class="text-header">
+                    <h3 class="m-0">Upstox</h3>
+                    <div class="ratings">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="Reviews">
+                    <p><i class="fas fa-comments"></i> 15K Reviews</p>
+                    <p><i class="fas fa-user"></i> 50.2K Accounts</p>
+                </div>
+                    <p>Open Demat A/c for FREE</p>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-primary mx-1">Open A/C</a>
+                        <a href="#" class="btn btn-outline-primary ml-2">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Equity</li>
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Commodity</li>
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Currency</li>
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Futures</li>
+                    <li class="list-group-item" style="background-color: #dae3ff;"><i class="fa-solid fa-square-check"></i> Options</li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <p class="mb-1">A/C Opening Charge</p>
+                <span style="font-size: x-small; font-weight:600;">₹0</span>
+                <p class="mb-1">Maintenance Charge</p>
+                <span style="font-size: x-small; font-weight:600;"> ₹300 <i class="fa-solid fa-circle-info"></i></span>
+                <p class="mb-1">Delivery Brokerage</p>
+                <span style="font-size: x-small; font-weight:600;">₹20 <i class="fa-solid fa-circle-info"></i></span>
+                <p class="mb-1">Intraday Brokerage</p>
+                <s style="font-size: x-small; font-weight:600;"> ₹20 <i class="fa-solid fa-circle-info"></i></s>
+            </div>
+            <div class="card-footer img-footer" style="display: flex; align-items: center; justify-content: center;">
+                <div style="height: 200px; width: 200px;"> <img src="{% static 'ipo/assets/Allbroker_img/upstock.png' %}" alt="Upstox"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -6,5 +6,5 @@ urlpatterns = [
     path('', views.ipo, name='ipo'),
     path('upcomming', views.upcomming, name='upcomming'),
     path('sharkinvestor', views.sharkinvestor, name='sharkinvestor'),
-    path('Allbrokers',views.Allbrokers,name='Allbrokers')
+    path('Allbrokers',views.Allbrokers, name='Allbrokers')
 ]

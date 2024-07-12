@@ -8,8 +8,20 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from .models import UnverifiedUser
+from rest_framework_simplejwt.tokens import RefreshToken
 from account.renderer import UserRenderer
 User = get_user_model()
+
+#generate token
+def get_tokens_for_user(user):
+    refresh = RefreshToken.for_user(user)
+
+    return {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+    }
+
+
 
 class UserRegistrationView(APIView):
     renderer_classes=[UserRenderer]
@@ -41,11 +53,11 @@ class VerifyEmailView(APIView):
         )
         user.email_verified = True
         user.save()
-
+        token= get_tokens_for_user(user)
         # Delete the unverified user record
         unverified_user.delete()
 
-        return Response({'msg': 'Email verified successfully'}, status=status.HTTP_200_OK)
+        return Response({'token':token, 'msg': 'Email verified successfully'}, status=status.HTTP_200_OK)
 
 class UserLoginView(APIView):
     renderer_classes=[UserRenderer]
@@ -57,7 +69,8 @@ class UserLoginView(APIView):
             user = authenticate(email=email, password=password)
             if user is not None:
                 if user.email_verified:
-                    return Response({'msg': 'Login Success'}, status=status.HTTP_200_OK)
+                    token= get_tokens_for_user(user)
+                    return Response({'token':token, 'msg': 'Login Success'}, status=status.HTTP_200_OK)
                 else:
                     return Response({'errors': {'email': 'Email not verified'}}, status=status.HTTP_400_BAD_REQUEST)
             else:

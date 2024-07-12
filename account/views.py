@@ -8,18 +8,23 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from .models import UnverifiedUser
-
+from account.renderer import UserRenderer
 User = get_user_model()
 
 class UserRegistrationView(APIView):
+    renderer_classes=[UserRenderer]
     def post(self, request, format=None):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
+            email = serializer.validated_data.get('email')
+            if User.objects.filter(email=email).exists():
+                return Response({'error': 'Email already exists'}, status=status.HTTP_400_BAD_REQUEST)
             unverified_user = serializer.save()
             return Response({'msg': 'Registration Successful. Please verify your email.'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class VerifyEmailView(APIView):
+    renderer_classes=[UserRenderer]
     def post(self, request, format=None):
         email = request.data.get('email')
         verification_code = request.data.get('verification_code')
@@ -43,6 +48,7 @@ class VerifyEmailView(APIView):
         return Response({'msg': 'Email verified successfully'}, status=status.HTTP_200_OK)
 
 class UserLoginView(APIView):
+    renderer_classes=[UserRenderer]
     def post(self, request, format=None):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):

@@ -175,3 +175,18 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+# settings.py
+
+# Configure SMTP email backend
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'e2f96e709b758d'
+EMAIL_HOST_PASSWORD = '86fe32e4068511'
+EMAIL_PORT = 2525
+EMAIL_USE_TLS = True  # Optional, depending on your Mailtrap configuration
+
+
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+

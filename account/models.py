@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, username, first_name, last_name, password=None, password2=None):
+    def create_user(self, email, username, first_name, last_name, password=None):
         if not email:
             raise ValueError("Users must have an email address")
         
@@ -36,6 +36,7 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    email_verified = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -54,3 +55,12 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+class UnverifiedUser(models.Model):
+    email = models.EmailField(verbose_name="Email", max_length=255, unique=True)
+    username = models.CharField(max_length=200)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    password = models.CharField(max_length=255)
+    verification_code = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)

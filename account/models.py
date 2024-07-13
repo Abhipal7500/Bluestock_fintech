@@ -57,7 +57,7 @@ class User(AbstractBaseUser):
         return self.is_admin
 
 class UnverifiedUser(models.Model):
-    email = models.EmailField(verbose_name="Email", max_length=255, unique=True)
+    email = models.EmailField(verbose_name="Email", max_length=255, unique=False)
     username = models.CharField(max_length=200)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)

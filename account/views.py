@@ -54,8 +54,8 @@ class VerifyEmailView(APIView):
         user.email_verified = True
         user.save()
         token= get_tokens_for_user(user)
-        # Delete the unverified user record
-        unverified_user.delete()
+        # Delete all the unverified user record
+        UnverifiedUser.objects.filter(email=email).delete()
 
         return Response({'token':token, 'msg': 'Email verified successfully'}, status=status.HTTP_200_OK)
 

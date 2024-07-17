@@ -12,4 +12,7 @@ def sharkinvestor(request):
 
 def Allbrokers(request):
     return render(request,'Allbrokers.html')
+
+def BrokerCompare(request):
+    return render(request, 'BrokerCompare.html')
     

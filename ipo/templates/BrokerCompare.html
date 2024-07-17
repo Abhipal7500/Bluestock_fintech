@@ -1,0 +1,160 @@
+<!-- home.html -->
+
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Compare Broker{% endblock %}
+{% block content %}
+
+
+<html>
+  <head>
+  <!-- Google Fonts - Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+   <!-- Font awesome icons-->
+  <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Bootstrap 5 CDN-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+<!-- Custom CSS-->
+<style>
+.side-menu {
+  width: 1405px;
+  height: 503px;
+  top: 182px;
+  left: auto;
+  move-right: 211px;
+  gap: 0px;
+  opacity: 0px;
+  overflow-y: auto;
+}
+
+.side-menu .navbar-nav .nav-link {
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.side-menu .navbar-nav .nav-link.active,
+.side-menu .navbar-nav .nav-link:hover {
+  background-color: white;
+}
+
+.side-menu .navbar-nav .nav-link i {
+  margin-right: 0.5rem;
+}
+
+
+</style>
+
+
+
+
+   
+<nav class="mx-5 my-3" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+ <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'ipo' %}">IPO</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'upcomming' %}" style="color: blue;">Upcoming IPO</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'BrokerCompare' %}" style="color: blue;">Compare Broker</a></li>
+    </ol>
+</nav>
+
+
+    <h1>Compare Broker Page</h1>
+    <p>Content of the Compare Broker page</p>
+     <a href="{% url 'BrokerCompare' %}" >
+               </a>
+    <!-- Or a button -->
+   <!--- <form action="{% url 'BrokerCompare' %}" method="get">
+        <button type="submit">Load a Broker URL</button>
+    </form> -->
+
+
+</head>
+  <body>
+   
+ <div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3 bg-white p-0 side-menu">
+              <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid flex-column align-items-start">
+                  <a class="navbar-brand mb-3 text-primary" href="#">
+                    <img src="logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column w-100">
+                      <li class="nav-item active">
+                        <a class="nav-link text-primary" href="#">
+                          <i class="fa-solid fa-chart-pie text-primary"></i> Active Clients
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">
+                          <i class="fa-solid fa-money-bill-alt text-primary"></i> Charges
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">
+                          <i class="fa-solid fa-exclamation-triangle text-primary"></i> Complaints
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">
+                          <i class="fa-solid fa-chart-line text-primary"></i> Share Holding
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">
+                          <i class="fa-solid fa-star text-primary"></i> Pros & Cons
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">
+                          <i class="fa-solid fa-star-half-alt text-primary"></i> Ratings
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">
+                          <i class="fa-solid fa-chart-bar text-primary"></i> Financials
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div class="col-3">
+              <div class="card h-100 mb-4">
+                <div class="card-body">
+                  <!-- Slender card content -->
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card h-100 mb-4">
+                <div class="card-body">
+                  <!-- Slender card content -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </body>
+</html>
+
+{% endblock %}

@@ -1,15 +1,8 @@
 {% extends 'base/base.html' %}
 
-{% load static %}
+{% load static %} <!-- Add this line to load static template tag -->
 
 {% block content %}
-<style>
-    body {
-        color: #566787;
-		font-family: 'Varela Round', sans-serif;
-		font-size: 13px;
-	}
-</style>
 <div id="dashboard-content" style="display: none;">
     <h5><b>Dashboard</b></h5>
     <div class="row" style="display: flex; justify-content: space-between">
@@ -74,38 +67,8 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const accessToken = localStorage.getItem('access_token');
-
-        if (!accessToken) {
-            // If there's no token, show an alert and redirect to the login page
-            alert('Please login first to access this page.');
-            window.location.href = "{% url 'admin' %}"; // Redirect to login page
-        } else {
-            // If token is present, check the validity by making an authenticated request
-            fetch("{% url 'tokenAuthenticate' %}", {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show the dashboard content
-                    document.getElementById('dashboard-content').style.display = 'block';
-                } else {
-                    // Handle unauthorized response
-                    alert('Session expired or invalid. Please login again.');
-                    window.location.href = "{% url 'admin' %}"; // Redirect to login page
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-                window.location.href = "{% url 'admin' %}"; // Redirect to login page
-            });
-        }
-    });
-</script>
+<div id="not-authenticated" style="display: none;">
+    <h5>You need to be authenticated to view this page.</h5>
+    <p>Please <a href="/login">login</a> to access the dashboard.</p>
+</div>
 {% endblock %}

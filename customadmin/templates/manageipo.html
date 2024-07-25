@@ -247,15 +247,16 @@
                 </tr>
             </thead>
             <tbody>
+                {% for i in ipo %}
                 <tr>
-                    <td>Thomas Hardy</td>
-                    <td>100-110</td>
-                    <td>01-01-2023</td>
-                    <td>10-01-2023</td>
-                    <td>100,000</td>
-                    <td>IPO</td>
-                    <td>20-01-2023</td>
-                    <td>Open</td>
+                    <td>{{i.company_name}}</td>
+                    <td>{{i.price_band}}</td>
+                    <td>{{i.open}}</td>
+                    <td>{{i.close}}</td>
+                    <td>{{i.issue_size}}</td>
+                    <td>{{i.issue_type}}</td>
+                    <td>{{i.listing_date}}</td>
+                    <td>{{i.status}}</td>
                     <td>
                         <a href="#editEmployeeModal" class="edit" data-toggle="modal"><button type="button" class="btn btn-primary">Update</button></a>
                        
@@ -265,6 +266,7 @@
                         <a href="#viewEmployeeModal" class="view" data-toggle="modal"><i class="fa-regular fa-eye"></i></a>
                     </td>
                 </tr>
+                {% endfor %}
                 
                 <!-- Add other rows here -->
             </tbody>

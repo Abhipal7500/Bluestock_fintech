@@ -8,7 +8,7 @@ from account.serializers import UserLoginSerializer
 from account.renderer import UserRenderer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-
+from .models import IPOInfo
 # Generate token
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -59,4 +59,8 @@ class tokenAuthenticateView(APIView):
 
 class ManageIPOView(APIView):
     def get(self, request, format=None):
-        return render(request, 'manageipo.html')
+        ipo = IPOInfo.objects.all()
+        context = {
+            'ipo': ipo
+        }
+        return render(request, 'manageipo.html', context)

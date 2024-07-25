@@ -8,6 +8,9 @@
 
 <html>
   <head>
+
+
+
   <!-- Google Fonts - Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
    <!-- Font awesome icons-->
@@ -76,6 +79,7 @@
 
 </head>
   <body>
+ 
    
  <div class="container-fluid">
   <div class="row justify-content-center">
@@ -95,12 +99,12 @@
                   <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav flex-column w-100">
                       <li class="nav-item active">
-                        <a class="nav-link text-primary" href="#">
+                        <a class="nav-link text-primary" href="{% url 'active_clients' %}" onclick= toggleGraph()>
                           <i class="fa-solid fa-chart-pie text-primary"></i> Active Clients
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link text-primary" href="#">
+                        <a class="nav-link text-primary" href="{% url 'charges' %}" onclick= toggleGraph()>
                           <i class="fa-solid fa-money-bill-alt text-primary"></i> Charges
                         </a>
                       </li>

@@ -15,4 +15,10 @@ def Allbrokers(request):
 
 def BrokerCompare(request):
     return render(request, 'BrokerCompare.html')
+def active_clients(request):
+    return render(request, 'active_clients.html')
+def charges(request):
+    return render(request, 'charges.html')
+
+
     

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ipo', #app installed
     'home', #installed app
     'account',
+    'customadmin',
 ]   
 
 MIDDLEWARE = [

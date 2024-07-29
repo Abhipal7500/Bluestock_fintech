@@ -1,0 +1,54 @@
+{% extends 'C:\Users\crazi\Desktop\bluestockfintech\customadmin\templates\base\base.html' %}
+
+{% block content %}
+<div id="registeripo-content" style="display: none;">
+    <div style="display: flex;justify-content: space-between;">
+        <div>
+            <h2 class="mt-3">Upcoming IPO Information</h2>
+            <h6 class="mt-3" style="margin-left: 8px;">Manage your ipo details</h6>
+        </div>
+        <div class="mt-3" style="margin-right: 70px;">
+            <button class="btn btn-primary mr-2">Register</button>
+            <button class="btn btn-secondary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const accessToken = localStorage.getItem('access_token');
+
+        if (!accessToken) {
+            // If there's no token, show an alert and redirect to the login page
+            alert('Please login first to access this page.');
+            window.location.href = "{% url 'admin' %}"; // Redirect to login page
+        } else {
+            // If token is present, check the validity by making an authenticated request
+            fetch("{% url 'tokenAuthenticate' %}", {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show the dashboard content
+                    document.getElementById('registeripo-content').style.display = 'block';
+                } else {
+                    // Handle unauthorized response
+                    alert('Session expired or invalid. Please login again.');
+                    window.location.href = "{% url 'admin' %}"; // Redirect to login page
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+                window.location.href = "{% url 'admin' %}"; // Redirect to login page
+            });
+        }
+    });
+</script>
+
+{% endblock %}

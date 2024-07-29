@@ -33,15 +33,15 @@ class UserLoginView(APIView):
 
             if user is not None:
                 if user.is_admin:
-                    if user.email_verified:
+                    # if user.email_verified:
                         token = get_tokens_for_user(user)
                         response_data = {
                             'token': token,
                             'redirect_url': 'dashboard/'
                         }
                         return Response(response_data, status=status.HTTP_200_OK)
-                    else:
-                        return Response({'errors': {'email': 'Email not verified'}}, status=status.HTTP_400_BAD_REQUEST)
+                    # else:
+                    #     return Response({'errors': {'email': 'Email not verified'}}, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     return Response({'errors': {'non_field_errors': ['User is not an admin']}}, status=status.HTTP_403_FORBIDDEN)
             else:
@@ -64,3 +64,7 @@ class ManageIPOView(APIView):
             'ipo': ipo
         }
         return render(request, 'manageipo.html', context)
+
+class RegisteripoView(APIView):
+    def get(self, request, format=None):
+        return render(request, 'Registeripo.html')

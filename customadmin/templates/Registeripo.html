@@ -1,17 +1,373 @@
 {% extends 'C:\Users\crazi\Desktop\bluestockfintech\customadmin\templates\base\base.html' %}
-
+{% load static %}
 {% block content %}
+<style>
+.header{
+    display: flex;
+    justify-content: space-between;
+
+}
+.textupcomming h2{
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    font-size: 28px;
+    font-style: SemiBold;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 600;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+}
+.textupcomming h6{
+    top: 57px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+}
+.register-button2 {
+    width: 103px; /* Adjust the width as needed */
+    height: 37px; /* Height of the button */
+    display: flex;
+    align-items: center; /* Vertically centers the content */
+    justify-content: center; /* Horizontally centers the content */
+    padding: 0; /* Adjust padding as needed */
+    position: relative;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(79, 128, 225, 1);
+    margin-left: 10px;
+    
+}
+
+.registertext {
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    line-height: 22px;
+}
+.cancel-button2 {
+    width: 103px; /* Adjust the width as needed */
+    height: 37px; /* Height of the button */
+    display: flex;
+    align-items: center; /* Vertically centers the content */
+    justify-content: center; /* Horizontally centers the content */
+    padding: 0; /* Adjust padding as needed */
+    position: relative;
+    border-color: rgba(79, 128, 225, 1);
+    border-radius: 10px;
+    background-color:white;
+    margin-left: 10px;
+    
+}
+
+.canceltext {
+    color:  rgba(79, 128, 225, 1);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    line-height: 22px;
+}
+.mainbody{
+    display: flex;
+    margin-top: 30px;
+}
+.optiondiv{
+    display: flex;
+    flex-direction: column;
+}
+.option1{
+    color: rgba(1, 64, 188, 1);
+    height: auto;
+    font-size: 17px;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 500;
+    background-color: aliceblue;
+    padding: 10px;
+    border-radius: 10px;
+    width: 225px;
+}
+.option2{
+
+    height: auto;
+    font-size: 17px;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 500;
+    width: 225px;
+    padding: 10px;
+    border-radius: 10px;
+    padding-left: 46px;
+}
+.formnames{
+    color: rgba(0, 0, 0, 1);
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: 22px;
+   
+}
+.Intruc{
+    
+    margin-top: 20px;
+}
+.formheading{
+    display: flex;
+    flex-direction: column;
+}
+.formdiv{
+    padding-left: 40px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.company-logo-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.company-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.company-name {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: 22px;
+    font-stretch: normal;
+}
+
+.company-role {
+    font-size: 14px;
+    color: #777;
+}
+
+.upload-btn, .delete-btn {
+    margin-left: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4f80e1;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: white;
+    color:  rgba(79, 128, 225, 1) ;
+    width: 118px;
+    border: solid;
+    border-color: rgba(79, 128, 225, 1) ;
+    border-radius: 10px;
+    height: 41px;
+}
+
+.ipo-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input, select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
 <div id="registeripo-content" style="display: none;">
-    <div style="display: flex;justify-content: space-between;">
-        <div>
+    <div class="header">
+        <div class="textupcomming">
             <h2 class="mt-3">Upcoming IPO Information</h2>
             <h6 class="mt-3" style="margin-left: 8px;">Manage your ipo details</h6>
         </div>
-        <div class="mt-3" style="margin-right: 70px;">
-            <button class="btn btn-primary mr-2">Register</button>
-            <button class="btn btn-secondary">Cancel</button>
+        <div class="mt-3" style="display: flex; justify-content: space-between;">
+            <button class="register-button2 ">
+                <span class="registertext">
+                Register
+                </span>
+              </button>
+              <button class="cancel-button2">
+                <span class="canceltext">
+                Cancel
+                </span>
+              </button>
+           
         </div>
     </div>
+    <div class="mainbody">
+        <div class="optiondiv">
+           <div class="option1">
+            <i class="fa-solid fa-circle-info"></i>
+            <span style="padding-left: 15px;">IPO Information</span>
+           </div>
+           <div class="option2 mt-2">
+            <span>IPO Info</span>
+           </div>
+        </div>
+        <div class="formdiv">
+         <div class="formheading">
+           <span class="formnames">IPO Information</span>
+           <span class="Intruc">Enter IPO Details</span>
+         </div>
+         <hr>
+         <div class="container">
+            <div class="company-logo-section">
+                <img id="companyLogo" src="{% static 'ipo/assets/logo/NSE.png' %}" alt="Company Logo" class="company-logo">
+                <div>
+                    <p class="company-name" style="margin-bottom: 0rem;">NSE India</p>
+                    <p class="company-role">Tech Lead<br>Pune</p>
+                </div>
+                <button type="button" class="upload-btn" onclick="document.getElementById('fileInput').click();">Upload Logo</button>
+                <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="previewAndUploadLogo(event)">
+                <button class="delete-btn">Delete</button>
+            </div>
+            
+    
+            <form class="ipo-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="companyName">Company Name</label>
+                        <input type="text" id="companyName" placeholder="Vodafone Idea">
+                    </div>
+                    <div class="form-group">
+                        <label for="priceBand">Price Band</label>
+                        <input type="text" id="priceBand" placeholder="Not Issued">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="open">Open</label>
+                        <input type="text" id="open" placeholder="Not Issued">
+                    </div>
+                    <div class="form-group">
+                        <label for="close">Close</label>
+                        <input type="text" id="close" placeholder="Not Issued">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="issueSize">Issue Size</label>
+                        <input type="text" id="issueSize" placeholder="2300 Cr.">
+                    </div>
+                    <div class="form-group">
+                        <label for="issueType">Issue Type</label>
+                        <select id="issueType">
+                            <option value="" disabled selected>Select</option>
+                            <!-- Add options here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="listingDate">Listing Date</label>
+                        <input type="text" id="listingDate" placeholder="Not Issued">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status">
+                            <option value="" disabled selected>Select</option>
+                            <!-- Add options here -->
+                        </select>
+                    </div>
+                </div>
+    
+                <h3>New Listed IPO Details (When IPO Gets Listed)</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ipoPrice">IPO Price</label>
+                        <input type="text" id="ipoPrice" placeholder="₹ 383">
+                    </div>
+                    <div class="form-group">
+                        <label for="listingPrice">Listing Price</label>
+                        <input type="text" id="listingPrice" placeholder="₹ 435">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="listingGain">Listing Gain</label>
+                        <input type="text" id="listingGain" placeholder="13.58%">
+                    </div>
+                    <div class="form-group">
+                        <label for="listingDateNew">Listing Date</label>
+                        <input type="date" id="listingDateNew">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cmp">CMP</label>
+                        <input type="text" id="cmp" placeholder="₹410">
+                    </div>
+                    <div class="form-group">
+                        <label for="currentReturn">Current Return</label>
+                        <input type="text" id="currentReturn" placeholder="7.05%">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rhp">RHP</label>
+                        <input type="text" id="rhp" placeholder="Enter RHP PDF Link">
+                    </div>
+                    <div class="form-group">
+                        <label for="drhp">DRHP</label>
+                        <input type="text" id="drhp" placeholder="Enter DRHP PDF Link">
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
 </div>
 
 
@@ -49,6 +405,62 @@
             });
         }
     });
+    
+// script to handle logo upload
+function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        function previewAndUploadLogo(event) {
+            const fileInput = event.target;
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    document.getElementById('companyLogo').src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+
+                const formData = new FormData();
+                formData.append('logo', file);
+
+                fetch("{% url 'upload_logo' %}", {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Logo uploaded successfully!');
+                    } else {
+                        alert('Failed to upload logo: ' + (data.error || 'Unknown error'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while uploading the logo.');
+                });
+            }
+        }
 </script>
 
 {% endblock %}

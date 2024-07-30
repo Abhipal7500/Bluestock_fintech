@@ -9,6 +9,12 @@ from account.renderer import UserRenderer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import IPOInfo
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import os
+from django.conf import settings
+
+
 # Generate token
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -68,3 +74,23 @@ class ManageIPOView(APIView):
 class RegisteripoView(APIView):
     def get(self, request, format=None):
         return render(request, 'Registeripo.html')
+
+def handle_uploaded_file(f):
+    upload_dir = os.path.join(settings.STATICFILES_DIRS[0], 'ipo/assets/logo')
+    os.makedirs(upload_dir, exist_ok=True)
+    file_path = os.path.join(upload_dir, f.name)
+    
+    with open(file_path, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+    return file_path
+
+@csrf_exempt
+def upload_logo(request):
+    if request.method == 'POST' and request.FILES.get('logo'):
+        try:
+            file_path = handle_uploaded_file(request.FILES['logo'])
+            return JsonResponse({'success': True, 'file_path': file_path})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+    return JsonResponse({'success': False, 'error': 'No file uploaded'})

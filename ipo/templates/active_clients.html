@@ -38,6 +38,7 @@
      
       <body>
       <div class="conatiner_element">
+      <h2 class="text-black mt-5 mb-3">Active Clients</h2>
 
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -55,41 +56,41 @@
 
   <script>
   
-    // JavaScript code to render the graph
-    document.addEventListener('DOMContentLoaded', function() {
-      var ctx = document.getElementById('activeClientsChart').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Client 1', 'Client 2', 'Client 3', 'Client 4', 'Client 5'],
-          datasets: [{
-            label: 'Active Clients',
-            data: [12, 19, 3, 5, 2],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
+  var ctx = document.getElementById('activeClientsChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['2016-17', '2017-18', '2018-19', '2019-20', '2020-21', '2021-22', '2022-23', '2023-24'],
+        datasets: [
+          {
+            label: 'Angel One',
+            data: [0.1, 1.5, 12.8, 27.4, 41.6, 52.9, 68.3, 80.2],
+            borderColor: 'orange',
+            backgroundColor: 'orange',
+            fill: false,
+            tension: 0.4
+          },
+          {
+            label: 'Zerodha',
+            data: [0.2, 2.1, 14.9, 30.6, 45.7, 57.3, 73.1, 84.5],
+            borderColor: 'blue',
+            backgroundColor: 'blue',
+            fill: false,
+            tension: 0.4
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            ticks: {
+              callback: function(value, index, ticks) {
+                return value + 'L';
+              }
             }
           }
         }
-      });
+      }
     });
   </script>
 

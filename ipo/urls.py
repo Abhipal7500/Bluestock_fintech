@@ -10,4 +10,8 @@ urlpatterns = [
     path('BrokerCompare' ,views.BrokerCompare,name='BrokerCompare'),
     path('active_clients' ,views.active_clients,name='active_clients'),
      path('charges' ,views.charges,name='charges'),
+     path('complaints',views.complaints,name='complaints'),
+     path('shareholding',views.shareholding,name='shareholding'),
+     path('pros_cons',views.pros_cons,name='pros_cons'),
+     path('Ratings',views.Ratings,name='Ratings'),
 ]

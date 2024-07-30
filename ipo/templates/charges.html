@@ -2,7 +2,7 @@
 
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %}Charges{% endblock %}
+{% block title %}charges{% endblock %}
 {% block content %}
 
 
@@ -29,9 +29,16 @@
   
   
   <style>
-    .table-card {
-      max-width: 800px;
-      margin: 0 auto;
+    .card table-card {
+      display:flex;
+      width: 1018px;
+      height: auto;
+      top: 1780px;
+    left: 452px;
+     gap: 0px;
+    border: 1px 0px 0px 0px;
+      opacity: 0px;
+
     }
     .table th {
       background-color: #2457C5;
@@ -60,6 +67,27 @@
        .card.slender-card .card-body {
       flex-grow: 1;
     }
+    .col-md-1{
+      display:flex;
+        width: 100%;
+      height: 653px;
+       margin-top: 30px;
+     left: 452px;
+    gap: 0px;
+     border: 1px 0px 0px 0px;
+        opacity: 0px;
+
+    }
+    
+    .col-md-6{
+        
+         display:flex;
+         width:100%;
+    }
+
+    .col-3{
+      width:100%;
+    }
    
 
 
@@ -78,6 +106,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+       width: 100%;
   }
   .ipo-card img {
       max-width: 80px;
@@ -121,15 +150,23 @@
   body{
     background-color: #eceef4;
   }
+  .selender-card {
+  height: auto !important;
+  min-height: 100%;
+}
+
+.ipo-card {
+  width: 100%;
+}
    </style>
    
 </head>
        <body>
   
   
-  <div class="container">
+  <div class="container ">
     <h2 class="text-black mt-5 mb-3">Charges</h2>
-    <div class="card table-card">
+    <div class="card table-card  text-center" >
       <div class="row g-0">
         <div class="col-md-6">
         <h3 class="second-table-title mb-3">Account Opening and Maintenance Charges</h3>
@@ -143,27 +180,24 @@
             </thead>  
             <tbody>  
               <tr>   
-                <td>ohn Doe</td>
-                <td>30</td>
-                <td>john@example.com</td>
+                <td>Account Opening Charges</td>
+                <td>0</td>
+                <td>200</td>
               </tr>
               <tr>
-                <td>Jane Smith</td>
-                <td>25</td>
-                <td>jane@example.com</td>
+                <td>Account Maintenance Charges</td>
+                <td>Rs 0 for the first year then Rs 23.6/Month</td>
+                <td>Rs 300 per Year</td>
               </tr>
-              <tr>
-                <td>Bob Johnson</td>
-                <td>40</td>
-                <td>bob@example.com</td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
          
     
      
-      <div class="col-md-6">
+      <div class="col-md-1">
+      <div style = " ">
           <h3 class="second-table-title mb-3">Brokarge Charges</h3>
           <table class="table table-striped table-hover">
             <thead>
@@ -175,25 +209,33 @@
             </thead>
             <tbody>
               <tr>
-                <td>Product A</td>
-                <td>10</td>
-                <td>$20.00</td>
+                <td>Intraday</td>
+                <td>Rs 20 or 0.25% (Whichever is lower</td>
+                <td>Rs 20 or 0.03% / executed order Whichever is lower</td>
               </tr>
               <tr>
-                <td>Product B</td>
-                <td>5</td>
-                <td>$15.00</td>
+                <td>Futures</td>
+                <td>Rs 20 or 0.25%(Whichever is lower)</td>
+                <td>Rs 20 or 0.03%/ executed order Whichever is lower</td>
               </tr>
               <tr>
-                <td>Product C</td>
-                <td>8</td>
-                <td>$25.00</td>
+                <td>Options</td>
+                <td>Rs 20 or 0.25%(whichever is lower)</td>
+                <td>Rs 20 per executed order( on Turnover)</td>
+              </tr>
+              <tr>
+                <td> Delivery</td>
+                <td> Zero</td>
+                <td> Zero </td>
+               
               </tr>
             </tbody>
           </table>
      </div>
+  
   </div>
-</div>
+
+ 
             
        <div class="col-3">
         <div class="card h-100 mb-4  selender-card " >
@@ -231,8 +273,9 @@
             </div>
      
    
-  </div>
-
+       </div>
+    </div>
+</div>
         
 </body>
  

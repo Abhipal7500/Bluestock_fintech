@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div id="dashboard-content" style="display: none;">
+    <h5><b>Dashboard</b></h5>
+    <div style="display: flex; justify-content: space-between">
+        <div class="card mr-2" style="padding: 20px">
+            <div class="card-header" style="padding-left: 0%">IPO Dashboard India</div>
+            <p>20 IPO in Gain</p>
+        </div>
+
+        <!-- Quick link -->
+        <div class="card mr-2">
+            <div class="quick-links">
+                <div class="card-header" style="padding-left: 0%">Quick Link</div>
+                <p>Adipiscing elit, sed do eiusmod tempor</p>
+                <div class="link-item">
+                    <div class="link-text">
+                        <img src="{% static 'nse-india-logo.png' %}" alt="NSE India" />
+                        <span>NSE India</span>
+                    </div>
+                    <a href="#" class="text-primary">Visit Now</a>
+                </div>
+                <div class="link-item">
+                    <div class="link-text">
+                        <img src="{% static 'bse-india-logo.png' %}" alt="BSE India" />
+                        <span>BSE India</span>
+                    </div>
+                    <a href="#" class="text-primary">Visit Now</a>
+                </div>
+                <div class="link-item">
+                    <div class="link-text">
+                        <img src="{% static 'sebi-logo.png' %}" alt="SEBI" />
+                        <span>SEBI</span>
+                    </div>
+                    <a href="#" class="text-primary">Visit Now</a>
+                </div>
+                <div class="link-item">
+                    <div class="link-text">
+                        <img src="{% static 'money-control-logo.png' %}" alt="Money Control" />
+                        <span>Money Control</span>
+                    </div>
+                    <a href="#" class="text-primary">Visit Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Board -->
+        <div class="card mr-2" style="padding: 20px">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="card-header">Main Board IPO</div>
+                <div class="card-header">
+                    <button type="button" class="btn btn-outline-primary">View Report</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart"></canvas>
+                <div class="mt-3" style="display: flex">
+                    <p class="mx-1"><strong>Upcoming:</strong> 15</p>
+                    <p class="mx-1"><strong>New Listed:</strong> 25</p>
+                    <p class="mx-1"><strong>Ongoing:</strong> 2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const accessToken = localStorage.getItem('access_token');
+
+        if (!accessToken) {
+            // If there's no token, show an alert and redirect to the login page
+            alert('Please login first to access this page.');
+            window.location.href = "{% url 'admin' %}"; // Redirect to login page
+        } else {
+            // If token is present, check the validity by making an authenticated request
+            fetch("{% url 'tokenAuthenticate' %}", {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show the dashboard content
+                    document.getElementById('dashboard-content').style.display = 'block';
+                } else {
+                    // Handle unauthorized response
+                    alert('Session expired or invalid. Please login again.');
+                    window.location.href = "{% url 'admin' %}"; // Redirect to login page
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+                window.location.href = "{% url 'admin' %}"; // Redirect to login page
+            });
+        }
+    });
+</script>
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class IPOInfo(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -9,11 +10,12 @@ class IPOInfo(models.Model):
     close = models.CharField(max_length=255)
     issue_size = models.CharField(max_length=255)
     issue_type = models.CharField(max_length=255)
-    listing_date = models.CharField(max_length=255)
+    first_listing_date = models.CharField(max_length=255)
     status = models.IntegerField()
     ipo_price = models.CharField(max_length=255)
     listing_price = models.CharField(max_length=255)
     listing_gain = models.CharField(max_length=255)
+    second_listing_date = models.DateField(default=timezone.now)
     cmp = models.CharField(max_length=255)
     current_return = models.CharField(max_length=255)
     rhp = models.CharField(max_length=255)

@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Bluestock_db',
         'USER':'postgres',
-        'PASSWORD':'Abhishek@pal7500',
+        'PASSWORD':'NRja@12022004',
         'HOST':'localhost',
     }
 }

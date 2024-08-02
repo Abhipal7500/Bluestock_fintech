@@ -15,10 +15,22 @@ def Allbrokers(request):
 
 def BrokerCompare(request):
     return render(request, 'BrokerCompare.html')
+
 def active_clients(request):
     return render(request, 'active_clients.html')
+
 def charges(request):
     return render(request, 'charges.html')
 
+def complaints(request):
+    return render(request, 'complaints.html')
 
+def shareholding(request):
+    return render(request, 'shareholding.html')
+
+def pros_cons(request):
+    return render( request, 'pros_cons.html')
+
+def Ratings(request):
+    return render( request , 'Ratings.html')
     

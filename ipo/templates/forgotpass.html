@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            margin: 20px 0;  /* Add margin from the top and bottom */
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .logo img {
+            width: 100%;  /* Stretch the image to the full width of the div */
+            height: auto;  /* Maintain the aspect ratio */
+        }
+        .btn-google {
+            background-color: #fff;
+            color: #4285F4;
+            border-color: #4285F4;
+        }
+        .btn-google:hover {
+            background-color: #4285F4;
+            color: #fff;
+        }
+        .create-account {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Hide by default */
+        }
+        .heading{
+            font-weight: 700;
+            font-size: x-large;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="logo">
+        <img src="../static/ipo/assets/logo/logo.png" alt="Bluestock">
+    </div>
+    <form id="login-form">
+        {% csrf_token %}
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <p class="heading">Forgot Password</p>
+        </div>
+        <div style="text-align: center;">
+            <p style="font-weight: 300;">Enter your email address to get the password reset link.</p>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="johndoe@gmail.com">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Password Reset</button>
+    </form>
+    <div class="create-account">
+        <a href="{% url 'loginuser' %}">Back to login</a>
+    </div>
+    <div class="loading-spinner">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
+<script>
+document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        document.querySelector('.loading-spinner').style.display = 'block';
+        // Extract form values directly
+        const email = document.getElementById('email').value.trim();
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Check if email and password are not empty
+        if (!email ) {
+            alert('Please enter email');
+            return;
+        }
+
+        // Send login request
+        fetch("{% url 'send-reset-password-email' %}", {  // Ensure this matches your endpoint
+            method: 'POST',
+            body: JSON.stringify({
+                email: email
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            }
+        })
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+            .then(({ status, body }) => {
+                // Hide the loading spinner immediately
+                document.querySelector('.loading-spinner').style.display = 'none';
+
+                // Delay the alert slightly to ensure the spinner is hidden first
+                setTimeout(() => {
+                    if (status === 200) {
+                        alert(body.msg);
+                        window.location.href = '/ipo/loginuser'; // Reload the page instead of redirecting
+                    } else {
+                        console.error(body);
+
+                        // Extracting error message based on different possible formats
+                        let errorMsg = 'Unknown error';
+                        if (body.errors) {
+                            errorMsg = Object.values(body.errors).flat().join(' ');
+                        } else if (body.error) {
+                            errorMsg = body.error;
+                        } else if (body.detail) {
+                            errorMsg = body.detail;
+                        }
+
+                        alert('Registration failed: ' + errorMsg);
+                    }
+                }, 100); // 100ms delay to ensure the spinner is hidden first
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Hide the loading spinner in case of an error
+                document.querySelector('.loading-spinner').style.display = 'none';
+                alert('An unexpected error occurred.');
+            });
+    });
+
+</script>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

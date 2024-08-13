@@ -405,7 +405,7 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+   document.addEventListener('DOMContentLoaded', function () {
     const accessToken = localStorage.getItem('access_token');
 
     if (!accessToken) {
@@ -413,20 +413,21 @@
         alert('Please login first to access this page.');
         window.location.href = "{% url 'admin' %}"; // Redirect to login page
     } else {
-        // If token is present, check the validity by making an authenticated request
+        // If token is present, check the validity and admin status by making an authenticated request
         fetch("{% url 'tokenAuthenticate' %}", {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
-        .then(response => {
-            if (response.ok) {
-                // Show the dashboard content
+        .then(response => response.json())
+        .then(data => {
+            if (data.is_authenticated && data.is_admin) {
+                // Show the register IPO content
                 document.getElementById('registeripo-content').style.display = 'block';
             } else {
-                // Handle unauthorized response
-                alert('Session expired or invalid. Please login again.');
+                // Handle unauthorized response or non-admin user
+                alert('You do not have admin privileges. Please login with an admin account.');
                 window.location.href = "{% url 'admin' %}"; // Redirect to login page
             }
         })
@@ -468,27 +469,27 @@
                 }
             })
             .then(response => {
-    // Check if the response status is OK (200-299)
-    if (response.ok) {
-        return response.json();
-    } else {
-        return response.json().then(data => {
-            throw new Error(data.errors ? JSON.stringify(data.errors) : 'Unknown error');
-        });
-    }
-})
-.then(data => {
-    if (data.success) {
-        alert('IPO details saved successfully!');
-    } else {
-        // If the data does not contain a 'success' field, handle it as an error
-        alert('Failed to save IPO details: ' + (data.errors ? JSON.stringify(data.errors) : 'Unknown error'));
-    }
-})
-.catch(error => {
-    console.error('Error:', error);
-    alert('An error occurred while saving IPO details: ' + "Please All detail correctly");
-});
+                // Check if the response status is OK (200-299)
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return response.json().then(data => {
+                        throw new Error(data.errors ? JSON.stringify(data.errors) : 'Unknown error');
+                    });
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    alert('IPO details saved successfully!');
+                } else {
+                    // If the data does not contain a 'success' field, handle it as an error
+                    alert('Failed to save IPO details: ' + (data.errors ? JSON.stringify(data.errors) : 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while saving IPO details: ' + "Please enter all details correctly.");
+            });
         });
     }
 });

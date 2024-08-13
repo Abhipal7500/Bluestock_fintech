@@ -55,10 +55,13 @@ class VerifyEmailView(APIView):
         user.email_verified = True
         user.save()
         token= get_tokens_for_user(user)
+        response_data = {
+                            'token': token,
+                            'redirect_url': '/'
+                        }
         # Delete all the unverified user record
         UnverifiedUser.objects.filter(email=email).delete()
-
-        return Response({'token':token, 'msg': 'Email verified successfully'}, status=status.HTTP_200_OK)
+        return Response(response_data, status=status.HTTP_200_OK)
 
 class UserLoginView(APIView):
     renderer_classes=[UserRenderer]
@@ -71,7 +74,11 @@ class UserLoginView(APIView):
             if user is not None:
                 if user.email_verified:
                     token= get_tokens_for_user(user)
-                    return Response({'token':token, 'msg': 'Login Success'}, status=status.HTTP_200_OK)
+                    response_data = {
+                            'token': token,
+                            'redirect_url': '/'
+                        }
+                    return Response(response_data, status=status.HTTP_200_OK)
                 else:
                     return Response({'errors': {'email': 'Email not verified'}}, status=status.HTTP_400_BAD_REQUEST)
             else:

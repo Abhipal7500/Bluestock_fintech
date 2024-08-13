@@ -60,8 +60,13 @@ class DashboardView(APIView):
 
 class tokenAuthenticateView(APIView):
     permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
-        return Response(status=status.HTTP_200_OK)  
+        user = request.user
+        return Response({
+            'is_authenticated': True,
+            'is_admin': user.is_admin  # Assuming `is_admin` is a field on your user model
+        }, status=status.HTTP_200_OK) 
 
 class ManageIPOView(APIView):
     def get(self, request, format=None):

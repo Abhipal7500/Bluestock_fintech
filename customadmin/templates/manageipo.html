@@ -286,38 +286,40 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const accessToken = localStorage.getItem('access_token');
+   document.addEventListener('DOMContentLoaded', function() {
+    const accessToken = localStorage.getItem('access_token');
 
-        if (!accessToken) {
-            // If there's no token, show an alert and redirect to the login page
-            alert('Please login first to access this page.');
-            window.location.href = "{% url 'admin' %}"; // Redirect to login page
-        } else {
-            // If token is present, check the validity by making an authenticated request
-            fetch("{% url 'tokenAuthenticate' %}", {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show the dashboard content
-                    document.getElementById('manageipo-content').style.display = 'block';
-                } else {
-                    // Handle unauthorized response
-                    alert('Session expired or invalid. Please login again.');
-                    window.location.href = "{% url 'admin' %}"; // Redirect to login page
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+    if (!accessToken) {
+        // If there's no token, show an alert and redirect to the login page
+        alert('Please login first to access this page.');
+        window.location.href = "{% url 'admin' %}"; // Redirect to login page
+    } else {
+        // If token is present, check the validity and admin status by making an authenticated request
+        fetch("{% url 'tokenAuthenticate' %}", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.is_authenticated && data.is_admin) {
+                // Show the dashboard content
+                document.getElementById('manageipo-content').style.display = 'block';
+            } else {
+                // Handle unauthorized response or non-admin user
+                alert('You do not have admin privileges. Please login with an admin account.');
                 window.location.href = "{% url 'admin' %}"; // Redirect to login page
-            });
-        }
-    });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+            window.location.href = "{% url 'admin' %}"; // Redirect to login page
+        });
+    }
+});
+
 </script>
 
 {% endblock %}

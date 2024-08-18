@@ -1,11 +1,17 @@
 # ipo/views.py
+from multiprocessing import context
+from .models import IPOInfo
 from django.shortcuts import render
 
 def ipo(request):
     return render(request, 'index.html')
 
 def upcomming(request):
-    return render(request, 'upcomming.html')
+    upcomming = IPOInfo.objects.all()
+    context={
+               'upcomming' : upcomming
+    }
+    return render(request, 'upcomming.html', context)
 
 def sharkinvestor(request):
     return render(request,'sharkinvestor.html')

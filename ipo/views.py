@@ -24,7 +24,7 @@ def active_clients(request):
     return render(request, 'active_clients.html')
 
 def charges(request):
-    return render(request, 'charges.html')
+    return render(request, 'charges. html')
 
 def complaints(request):
     return render(request, 'complaints.html')

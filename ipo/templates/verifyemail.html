@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<style>
+      .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Hide by default */
+        }
+</style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4><i class="fas fa-envelope"></i> Email Verification</h4>
+                </div>
+                <div class="card-body">
+                    <form id="login-form">
+                        {% csrf_token %}
+                        <!-- Email Input -->
+                        <div class="form-group">
+                            <label for="email">Enter Email Address</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        <!-- Verification Code Input -->
+                        <div class="form-group">
+                            <label for="verificationCode">Enter Verification Code</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="verification_code" placeholder="Enter verification code" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-check-circle"></i> Verify Email</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loading-spinner">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
+<script>
+
+document.getElementById('login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Show the loading spinner
+        document.querySelector('.loading-spinner').style.display = 'block';
+
+        // Extract form values
+        const email = document.getElementById('email').value.trim();
+        const verification_code = document.getElementById('verification_code').value.trim();
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Check if email, password, and name are not empty
+        if (!email||!verification_code) {
+            alert('Please enter email and verification code properly.');
+            // Hide the spinner before exiting
+            document.querySelector('.loading-spinner').style.display = 'none';
+            return;
+        }
+
+        // Send registration request
+        fetch("{% url 'verify-email' %}", {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email,
+                verification_code: verification_code
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Hide the loading spinner immediately
+                document.querySelector('.loading-spinner').style.display = 'none';
+
+                // Delay the alert slightly to ensure the spinner is hidden first
+                setTimeout(() => {
+                    if (data.token) {
+                      localStorage.setItem('access_token', data.token.access);
+                      localStorage.setItem('refresh_token', data.token.refresh);
+                      window.location.href = data.redirect_url;  // Reload the page instead of redirecting
+                    } else {
+                        console.error(body);
+
+                        // Extracting error message based on different possible formats
+                        let errorMsg = 'Unknown error';
+                        if (body.errors) {
+                            errorMsg = Object.values(body.errors).flat().join(' ');
+                        } else if (body.error) {
+                            errorMsg = body.error;
+                        } else if (body.detail) {
+                            errorMsg = body.detail;
+                        }
+
+                        alert('Verification Failed ' + errorMsg);
+                    }
+                }, 100); // 100ms delay to ensure the spinner is hidden first
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Hide the loading spinner in case of an error
+                document.querySelector('.loading-spinner').style.display = 'none';
+                alert('An unexpected error occurred.');
+            });
+    });
+
+</script>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -2,227 +2,251 @@
 {% load static %}
 {% block content %}
 <style>
-.header{
-    display: flex;
-    justify-content: space-between;
+    .header {
+        display: flex;
+        justify-content: space-between;
 
-}
-.textupcomming h2{
-    color: rgba(0, 0, 0, 1);
-    height: auto;
-    font-size: 28px;
-    font-style: SemiBold;
-    text-align: left;
-    font-family: Poppins;
-    font-weight: 600;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-}
-.textupcomming h6{
-    top: 57px;
-    color: rgba(0, 0, 0, 1);
-    height: auto;
-    font-size: 14px;
-    font-style: Regular;
-    text-align: left;
-    font-family: Poppins;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-}
-.register-button2 {
-    width: 103px; /* Adjust the width as needed */
-    height: 37px; /* Height of the button */
-    display: flex;
-    align-items: center; /* Vertically centers the content */
-    justify-content: center; /* Horizontally centers the content */
-    padding: 0; /* Adjust padding as needed */
-    position: relative;
-    border: none;
-    border-radius: 10px;
-    background-color: rgba(79, 128, 225, 1);
-    margin-left: 10px;
-    
-}
+    }
 
-.registertext {
-    color: rgba(255, 255, 255, 1);
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    font-family: Inter, sans-serif;
-    line-height: 22px;
-}
-.cancel-button2 {
-    width: 103px; /* Adjust the width as needed */
-    height: 37px; /* Height of the button */
-    display: flex;
-    align-items: center; /* Vertically centers the content */
-    justify-content: center; /* Horizontally centers the content */
-    padding: 0; /* Adjust padding as needed */
-    position: relative;
-    border-color: rgba(79, 128, 225, 1);
-    border-radius: 10px;
-    background-color:white;
-    margin-left: 10px;
-    
-}
+    .textupcomming h2 {
+        color: rgba(0, 0, 0, 1);
+        height: auto;
+        font-size: 28px;
+        font-style: SemiBold;
+        text-align: left;
+        font-family: Poppins;
+        font-weight: 600;
+        line-height: normal;
+        font-stretch: normal;
+        text-decoration: none;
+    }
 
-.canceltext {
-    color:  rgba(79, 128, 225, 1);
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    font-family: Inter, sans-serif;
-    line-height: 22px;
-}
-.mainbody{
-    display: flex;
-    margin-top: 30px;
-}
-.optiondiv{
-    display: flex;
-    flex-direction: column;
-}
-.option1{
-    color: rgba(1, 64, 188, 1);
-    height: auto;
-    font-size: 17px;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 500;
-    background-color: aliceblue;
-    padding: 10px;
-    border-radius: 10px;
-    width: 225px;
-}
-.option2{
+    .textupcomming h6 {
+        top: 57px;
+        color: rgba(0, 0, 0, 1);
+        height: auto;
+        font-size: 14px;
+        font-style: Regular;
+        text-align: left;
+        font-family: Poppins;
+        font-weight: 400;
+        line-height: normal;
+        font-stretch: normal;
+        text-decoration: none;
+    }
 
-    height: auto;
-    font-size: 17px;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 500;
-    width: 225px;
-    padding: 10px;
-    border-radius: 10px;
-    padding-left: 46px;
-}
-.formnames{
-    color: rgba(0, 0, 0, 1);
-    font-size: 24px;
-    font-family: Inter;
-    font-weight: 700;
-    line-height: 22px;
-   
-}
-.Intruc{
-    
-    margin-top: 20px;
-}
-.formheading{
-    display: flex;
-    flex-direction: column;
-}
-.formdiv{
-    padding-left: 40px;
-}
+    .register-button2 {
+        width: 103px;
+        /* Adjust the width as needed */
+        height: 37px;
+        /* Height of the button */
+        display: flex;
+        align-items: center;
+        /* Vertically centers the content */
+        justify-content: center;
+        /* Horizontally centers the content */
+        padding: 0;
+        /* Adjust padding as needed */
+        position: relative;
+        border: none;
+        border-radius: 10px;
+        background-color: rgba(79, 128, 225, 1);
+        margin-left: 10px;
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #fff;
-}
+    }
 
-.company-logo-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
+    .registertext {
+        color: rgba(255, 255, 255, 1);
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        font-family: Inter, sans-serif;
+        line-height: 22px;
+    }
 
-.company-logo {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-}
+    .cancel-button2 {
+        width: 103px;
+        /* Adjust the width as needed */
+        height: 37px;
+        /* Height of the button */
+        display: flex;
+        align-items: center;
+        /* Vertically centers the content */
+        justify-content: center;
+        /* Horizontally centers the content */
+        padding: 0;
+        /* Adjust padding as needed */
+        position: relative;
+        border-color: rgba(79, 128, 225, 1);
+        border-radius: 10px;
+        background-color: white;
+        margin-left: 10px;
 
-.company-name {
-    font-size: 14px;
-    color: rgba(0, 0, 0, 1);
-    text-align: center;
-    font-family: Inter;
-    font-weight: 700;
-    line-height: 22px;
-    font-stretch: normal;
-}
+    }
 
-.company-role {
-    font-size: 14px;
-    color: #777;
-}
+    .canceltext {
+        color: rgba(79, 128, 225, 1);
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        font-family: Inter, sans-serif;
+        line-height: 22px;
+    }
 
-.upload-btn, .delete-btn {
-    margin-left: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4f80e1;
-    color: white;
-    cursor: pointer;
-}
+    .mainbody {
+        display: flex;
+        margin-top: 30px;
+    }
 
-.delete-btn {
-    background-color: white;
-    color:  rgba(79, 128, 225, 1) ;
-    width: 118px;
-    border: solid;
-    border-color: rgba(79, 128, 225, 1) ;
-    border-radius: 10px;
-    height: 41px;
-}
+    .optiondiv {
+        display: flex;
+        flex-direction: column;
+    }
 
-.ipo-form {
-    display: flex;
-    flex-direction: column;
-}
+    .option1 {
+        color: rgba(1, 64, 188, 1);
+        height: auto;
+        font-size: 17px;
+        text-align: left;
+        font-family: Inter;
+        font-weight: 500;
+        background-color: aliceblue;
+        padding: 10px;
+        border-radius: 10px;
+        width: 225px;
+    }
 
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+    .option2 {
 
-.form-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-right: 10px;
-}
+        height: auto;
+        font-size: 17px;
+        text-align: left;
+        font-family: Inter;
+        font-weight: 500;
+        width: 225px;
+        padding: 10px;
+        border-radius: 10px;
+        padding-left: 46px;
+    }
 
-.form-group:last-child {
-    margin-right: 0;
-}
+    .formnames {
+        color: rgba(0, 0, 0, 1);
+        font-size: 24px;
+        font-family: Inter;
+        font-weight: 700;
+        line-height: 22px;
 
-label {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
+    }
 
-input, select {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-}
+    .Intruc {
 
-h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #333;
-}
+        margin-top: 20px;
+    }
+
+    .formheading {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .formdiv {
+        padding-left: 40px;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+    }
+
+    .company-logo-section {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .company-logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 20px;
+    }
+
+    .company-name {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 1);
+        text-align: center;
+        font-family: Inter;
+        font-weight: 700;
+        line-height: 22px;
+        font-stretch: normal;
+    }
+
+    .company-role {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .upload-btn,
+    .delete-btn {
+        margin-left: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4f80e1;
+        color: white;
+        cursor: pointer;
+    }
+
+    .delete-btn {
+        background-color: white;
+        color: rgba(79, 128, 225, 1);
+        width: 118px;
+        border: solid;
+        border-color: rgba(79, 128, 225, 1);
+        border-radius: 10px;
+        height: 41px;
+    }
+
+    .ipo-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+    }
+
+    .form-group:last-child {
+        margin-right: 0;
+    }
+
+    label {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: #333;
+    }
 </style>
 
 <div id="registeripo-content" style="display: none;">
@@ -231,54 +255,59 @@ h3 {
             <h2 class="mt-3">Upcoming IPO Information</h2>
             <h6 class="mt-3" style="margin-left: 8px;">Manage your ipo details</h6>
         </div>
-        <div class="mt-3" style="display: flex; justify-content: space-between;">
-            <button class="register-button2 ">
-                <span class="registertext">
-                Register
-                </span>
-              </button>
-              <button class="cancel-button2">
-                <span class="canceltext">
-                Cancel
-                </span>
-              </button>
-           
-        </div>
+        <form class="ipo-form">
+            <div class="mt-3" style="display: flex; justify-content: space-between;">
+                <button class="register-button2 ">
+                    <span class="registertext">
+                        Register
+                    </span>
+                </button>
+                <button class="cancel-button2">
+                    <span class="canceltext">
+                        Cancel
+                    </span>
+                </button>
+
+            </div>
     </div>
     <div class="mainbody">
         <div class="optiondiv">
-           <div class="option1">
-            <i class="fa-solid fa-circle-info"></i>
-            <span style="padding-left: 15px;">IPO Information</span>
-           </div>
-           <div class="option2 mt-2">
-            <span>IPO Info</span>
-           </div>
+            <div class="option1">
+                <i class="fa-solid fa-circle-info"></i>
+                <span style="padding-left: 15px;">IPO Information</span>
+            </div>
+            <div class="option2 mt-2">
+                <span>IPO Info</span>
+            </div>
         </div>
         <div class="formdiv">
-         <div class="formheading">
-           <span class="formnames">IPO Information</span>
-           <span class="Intruc">Enter IPO Details</span>
-         </div>
-         <hr>
-         <div class="container">
-            <div class="company-logo-section">
-                <img id="companyLogo" src="{% static 'ipo/assets/logo/NSE.png' %}" alt="Company Logo" class="company-logo">
-                <div>
-                    <p class="company-name" style="margin-bottom: 0rem;">NSE India</p>
-                    <p class="company-role">Tech Lead<br>Pune</p>
-                </div>
-                <button type="button" class="upload-btn" onclick="document.getElementById('fileInput').click();">Upload Logo</button>
-                <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="previewAndUploadLogo(event)">
-                <button class="delete-btn">Delete</button>
+            <div class="formheading">
+                <span class="formnames">IPO Information</span>
+                <span class="Intruc">Enter IPO Details</span>
             </div>
-            
-    
-            <form class="ipo-form">
+            <hr>
+            <div class="container">
+
+
+                <div class="company-logo-section">
+                    <img id="companyLogo" src="{% static 'ipo/assets/logo/NSE.png' %}" alt="Company Logo"
+                        class="company-logo">
+                    <div>
+                        <p class="company-name" style="margin-bottom: 0rem;">NSE India</p>
+                        <p class="company-role">Tech Lead<br>Pune</p>
+                    </div>
+                    <button type="button" class="upload-btn"
+                        onclick="document.getElementById('fileInput').click();">Upload Logo</button>
+                    <input type="file" id="fileInput" style="display: none;" accept="image/*"
+                        onchange="previewAndUploadLogo(event)">
+                    <button class="delete-btn">Delete</button>
+                </div>
+
                 <div class="form-row">
+
                     <div class="form-group">
                         <label for="companyName">Company Name</label>
-                        <input type="text" id="companyName" placeholder="Vodafone Idea">
+                        <input type="text" id="companyName"  name="companyName" required placeholder="Vodafone Idea">
                     </div>
                     <div class="form-group">
                         <label for="priceBand">Price Band</label>
@@ -304,24 +333,27 @@ h3 {
                         <label for="issueType">Issue Type</label>
                         <select id="issueType">
                             <option value="" disabled selected>Select</option>
+                            <option value="pass" >pass</option>
                             <!-- Add options here -->
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="listingDate">Listing Date</label>
-                        <input type="text" id="listingDate" placeholder="Not Issued">
+                        <label for="firstlistingDate">Listing Date</label>
+                        <input type="text" id="firstlistingDate" placeholder="Not Issued">
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select id="status">
                             <option value="" disabled selected>Select</option>
+                            <option value="1">Open</option>
+                            <option value="2">Closed</option>
                             <!-- Add options here -->
                         </select>
                     </div>
                 </div>
-    
+
                 <h3>New Listed IPO Details (When IPO Gets Listed)</h3>
                 <div class="form-row">
                     <div class="form-group">
@@ -339,8 +371,8 @@ h3 {
                         <input type="text" id="listingGain" placeholder="13.58%">
                     </div>
                     <div class="form-group">
-                        <label for="listingDateNew">Listing Date</label>
-                        <input type="date" id="listingDateNew">
+                        <label for="secondlistingDate">Listing Date</label>
+                        <input type="date" id="secondlistingDate">
                     </div>
                 </div>
                 <div class="form-row">
@@ -363,8 +395,8 @@ h3 {
                         <input type="text" id="drhp" placeholder="Enter DRHP PDF Link">
                     </div>
                 </div>
-            </form>
-        </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -373,80 +405,136 @@ h3 {
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const accessToken = localStorage.getItem('access_token');
+   document.addEventListener('DOMContentLoaded', function () {
+    const accessToken = localStorage.getItem('access_token');
 
-        if (!accessToken) {
-            // If there's no token, show an alert and redirect to the login page
-            alert('Please login first to access this page.');
+    if (!accessToken) {
+        // If there's no token, show an alert and redirect to the login page
+        alert('Please login first to access this page.');
+        window.location.href = "{% url 'admin' %}"; // Redirect to login page
+    } else {
+        // If token is present, check the validity and admin status by making an authenticated request
+        fetch("{% url 'tokenAuthenticate' %}", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.is_authenticated && data.is_admin) {
+                // Show the register IPO content
+                document.getElementById('registeripo-content').style.display = 'block';
+            } else {
+                // Handle unauthorized response or non-admin user
+                alert('You do not have admin privileges. Please login with an admin account.');
+                window.location.href = "{% url 'admin' %}"; // Redirect to login page
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
             window.location.href = "{% url 'admin' %}"; // Redirect to login page
-        } else {
-            // If token is present, check the validity by making an authenticated request
-            fetch("{% url 'tokenAuthenticate' %}", {
-                method: 'GET',
+        });
+
+        // Handle form submission
+        document.querySelector('.register-button2').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData();
+            formData.append('company_logo_path', document.getElementById('companyLogo').src);
+            formData.append('company_name', document.getElementById('companyName').value);
+            formData.append('price_band', document.getElementById('priceBand').value);
+            formData.append('open', document.getElementById('open').value);
+            formData.append('close', document.getElementById('close').value);
+            formData.append('issue_size', document.getElementById('issueSize').value);
+            formData.append('issue_type', document.getElementById('issueType').value);
+            formData.append('first_listing_date', document.getElementById('firstlistingDate').value);
+            formData.append('status', document.getElementById('status').value);
+            formData.append('ipo_price', document.getElementById('ipoPrice').value);
+            formData.append('listing_price', document.getElementById('listingPrice').value);
+            formData.append('listing_gain', document.getElementById('listingGain').value);
+            formData.append('second_listing_date', document.getElementById('secondlistingDate').value);
+            formData.append('cmp', document.getElementById('cmp').value);
+            formData.append('current_return', document.getElementById('currentReturn').value);
+            formData.append('rhp', document.getElementById('rhp').value);
+            formData.append('drhp', document.getElementById('drhp').value);
+
+            fetch("{% url 'add_ipo_info' %}", {
+                method: 'POST',
+                body: formData,
                 headers: {
-                    'Authorization': `Bearer ${accessToken}`
+                    'Authorization': `Bearer ${accessToken}`,
+                    'X-CSRFToken': csrftoken
                 }
             })
             .then(response => {
+                // Check if the response status is OK (200-299)
                 if (response.ok) {
-                    // Show the dashboard content
-                    document.getElementById('registeripo-content').style.display = 'block';
+                    return response.json();
                 } else {
-                    // Handle unauthorized response
-                    alert('Session expired or invalid. Please login again.');
-                    window.location.href = "{% url 'admin' %}"; // Redirect to login page
+                    return response.json().then(data => {
+                        throw new Error(data.errors ? JSON.stringify(data.errors) : 'Unknown error');
+                    });
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    alert('IPO details saved successfully!');
+                } else {
+                    // If the data does not contain a 'success' field, handle it as an error
+                    alert('Failed to save IPO details: ' + (data.errors ? JSON.stringify(data.errors) : 'Unknown error'));
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-                window.location.href = "{% url 'admin' %}"; // Redirect to login page
+                alert('An error occurred while saving IPO details: ' + "Please enter all details correctly.");
             });
-        }
-    });
-    
-// script to handle logo upload
-function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
+        });
+    }
+});
+
+    // script to handle logo upload
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
             }
-            return cookieValue;
         }
+        return cookieValue;
+    }
 
-        const csrftoken = getCookie('csrftoken');
+    const csrftoken = getCookie('csrftoken');
 
-        function previewAndUploadLogo(event) {
-            const fileInput = event.target;
-            const file = fileInput.files[0];
+    function previewAndUploadLogo(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
 
-            if (file) {
-                const reader = new FileReader();
+        if (file) {
+            const reader = new FileReader();
 
-                reader.onload = function(e) {
-                    document.getElementById('companyLogo').src = e.target.result;
-                };
+            reader.onload = function (e) {
+                document.getElementById('companyLogo').src = e.target.result;
+            };
 
-                reader.readAsDataURL(file);
+            reader.readAsDataURL(file);
 
-                const formData = new FormData();
-                formData.append('logo', file);
+            const formData = new FormData();
+            formData.append('logo', file);
 
-                fetch("{% url 'upload_logo' %}", {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': csrftoken
-                    }
-                })
+            fetch("{% url 'upload_logo' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': csrftoken
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -459,8 +547,8 @@ function getCookie(name) {
                     console.error('Error:', error);
                     alert('An error occurred while uploading the logo.');
                 });
-            }
         }
+    }
 </script>
 
 {% endblock %}

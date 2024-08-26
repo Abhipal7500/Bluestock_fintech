@@ -13,7 +13,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import os
 from django.conf import settings
-
+from customadmin.serializers import AddipoSerializer
 
 # Generate token
 def get_tokens_for_user(user):
@@ -60,8 +60,13 @@ class DashboardView(APIView):
 
 class tokenAuthenticateView(APIView):
     permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
-        return Response(status=status.HTTP_200_OK)  
+        user = request.user
+        return Response({
+            'is_authenticated': True,
+            'is_admin': user.is_admin  # Assuming `is_admin` is a field on your user model
+        }, status=status.HTTP_200_OK) 
 
 class ManageIPOView(APIView):
     def get(self, request, format=None):
@@ -94,3 +99,16 @@ def upload_logo(request):
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
     return JsonResponse({'success': False, 'error': 'No file uploaded'})
+
+
+class AddipoView(APIView):
+    renderer_classes = [UserRenderer]
+    permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        serializer = AddipoSerializer(data=request.data)
+        if serializer.is_valid():
+          serializer.save()
+          return Response({'success': True, 'data': serializer.data}, status=status.HTTP_201_CREATED)
+        return Response({'success': False, 'errors': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    

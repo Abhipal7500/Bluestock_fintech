@@ -246,25 +246,21 @@
                   </li>
       
                 </ul>
-      
-                <a class="nav-link" href="#">Sign In</a>
-      
-                <button class="btn bluestock-app px-4 mx-2 position-relative" data-bs-toggle="modal"
-                  data-bs-target="#feedbackModal">
-                  <span class="d-flex align-items-center">
-                    <span class="small text-white">Sign Up Now&nbsp;
-                      <span class="position-absolute top-0 start-100 translate-middle">
-                        <span class="badge text-bg-light">New</span>
-                      </span>
-                      <i class="fa-solid fa-right-to-bracket" style="color: #ffff;"></i>
-                    </span>
-                  </span>
-                </button>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <img src="/assets/svg/icon-grid-menu.svg" alt="" class="mx-3">
-                </button>
-      
+                <div id="nav-buttons" style="display: flex;">
+                  <!-- Sign In Button -->
+                  <a id="sign-in" class="btn btn-outline-primary mx-2" href="{% url 'loginuser' %}">
+                      <i class="fas fa-sign-in-alt mx-1" style="display: flex; justify-content: center; align-items: center;"></i> Sign In
+                  </a>
+                  
+                  <!-- Sign Up Button -->
+                  <a id="sign-up" class="btn btn-outline-primary" href="{% url 'createaccount' %}">
+                      <i class="fas fa-user-plus mx-1" style="display: flex; justify-content: center; align-items: center;"></i> Sign Up
+                  </a>
+                  <!-- Logout Button -->
+                  <button id="logout-btn" type="button" class="btn btn-outline-primary" style="display: none; justify-content: center; align-items: center;">
+                      <i class="fas fa-sign-out-alt mx-1"></i> Logout
+                  </button>
+              </div>
               </div>
             </div>
       
@@ -489,5 +485,36 @@
       </div>
     </div>
   </footer>
+  <script>
+     document.addEventListener("DOMContentLoaded", function() {
+            const accessToken = localStorage.getItem('access_token'); // Adjust the key name if necessary
+            const signIn = document.getElementById('sign-in');
+            const signUp = document.getElementById('sign-up');
+            const logoutBtn = document.getElementById('logout-btn');
+    
+            if (accessToken) {
+                // Hide Sign In and Sign Up buttons, show Logout button
+                signIn.style.display = 'none';
+                signUp.style.display = 'none';
+                logoutBtn.style.display = 'inline-flex'; // or 'block', depending on your layout
+            } else {
+                // Show Sign In and Sign Up buttons, hide Logout button
+                signIn.style.display = 'inline-flex'; // or 'block', depending on your layout
+                signUp.style.display = 'inline-flex'; // or 'block', depending on your layout
+                logoutBtn.style.display = 'none';
+            }
+        });
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const logoutBtn = document.getElementById('logout-btn');
+    logoutBtn.addEventListener('click', function() {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      localStorage.removeItem('_grecaptcha'); // Adjust the key name if necessary
+      window.location.reload(); // Reload the page to update the UI
+    });
+  });
+  </script>
+  
 </body>
 </html>

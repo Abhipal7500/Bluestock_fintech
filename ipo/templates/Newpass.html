@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+        .btn-google {
+            background-color: #fff;
+            color: #4285F4;
+            border-color: #4285F4;
+        }
+        .btn-google:hover {
+            background-color: #4285F4;
+            color: #fff;
+        }
+        .create-account {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        .heading {
+            font-weight: 700;
+            font-size: x-large;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="logo">
+        <img src="/static/ipo/assets/logo/logo.png" alt="Bluestock">
+    </div>
+    <form id="reset-password-form">
+        {% csrf_token %}
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <p class="heading">Enter New Password</p>
+        </div>
+        <div class="mb-2">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your new password">
+        </div>
+        <div class="mb-2">
+            <label for="password2" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="password2" placeholder="Confirm your new password">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Reset Password</button>
+    </form>
+    <div class="create-account">
+        <a href="{% url 'loginuser' %}">Back to login</a>
+    </div>
+    <div class="loading-spinner">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+        const error = "{{ error }}";
+        if (error) {
+            alert(error);
+            window.location.href = '/ipo/loginuser';
+        }
+        
+    });
+
+
+    document.getElementById('reset-password-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        document.querySelector('.loading-spinner').style.display = 'block';
+
+        const password = document.getElementById('password').value.trim();
+        const password2 = document.getElementById('password2').value.trim();
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Validate that both passwords are entered and match
+        if (!password || !password2) {
+            alert('Please enter both password fields.');
+            document.querySelector('.loading-spinner').style.display = 'none';
+            return;
+        }
+        if (password !== password2) {
+            alert('Passwords do not match.');
+            document.querySelector('.loading-spinner').style.display = 'none';
+            return;
+        }
+
+        // Extract uid and token from the current URL
+        const pathSegments = window.location.pathname.split('/');
+    
+    // The uid and token are expected to be the last two segments in the URL path
+    const uid = pathSegments[pathSegments.length - 3];
+    const token = pathSegments[pathSegments.length - 2];
+
+        // Send the reset password request
+        fetch(`/api/user/reset-password/${uid}/${token}/`, {
+            method: 'POST',
+            body: JSON.stringify({
+                password: password,
+                password2: password2
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            }
+        })
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(({ status, body }) => {
+            document.querySelector('.loading-spinner').style.display = 'none';
+            if (status === 200) {
+                alert(body.msg);
+                window.location.href = '/ipo/loginuser'; // Redirect to login page after success
+            } else {
+                console.error(body);
+                let errorMsg = 'Unknown error';
+                if (body.errors) {
+                    errorMsg = Object.values(body.errors).flat().join(' ');
+                } else if (body.error) {
+                    errorMsg = body.error;
+                } else if (body.detail) {
+                    errorMsg = body.detail;
+                }
+                alert('Password reset failed: ' + errorMsg);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.querySelector('.loading-spinner').style.display = 'none';
+            alert('An unexpected error occurred.');
+        });
+    });
+</script>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

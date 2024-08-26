@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluestock Registration</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Added for spinner positioning */
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .btn-google {
+            background-color: #fff;
+            color: #4285F4;
+            border-color: #4285F4;
+        }
+
+        .btn-google:hover {
+            background-color: #4285F4;
+            color: #fff;
+        }
+
+        .create-account {
+            display: flex;
+            justify-content: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-label,
+        .form-control,
+        .form-check-label,
+        .small {
+            font-size: 0.9rem;
+        }
+
+        .input-group .form-control {
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            font-size: 0.9rem;
+            padding: 0.6rem;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Hide by default */
+        }
+
+        @media (max-height: 600px) {
+            .login-container {
+                padding: 1rem;
+                max-width: 350px;
+            }
+
+            .logo img {
+                width: 80%;
+            }
+        }
+    </style>
+    <!-- Include the Google reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="logo">
+        <img src="../static/ipo/assets/logo/logo.png" alt="Bluestock">
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; font-weight: 500;">
+        <p>Create New Account</p>
+    </div>
+    <form id="login-form">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Abhishek">
+        </div>
+        <div class="mb-2">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="johndoe@gmail.com">
+        </div>
+        <div class="mb-2">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" placeholder="********">
+                <button class="btn btn-outline-secondary" type="button" id="show-password">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+            <div class="text-end">
+                <a href="#" class="small">Forgot Password?</a>
+            </div>
+        </div>
+
+        <!-- Google reCAPTCHA widget -->
+        <div class="g-recaptcha mb-3" data-sitekey="6LeIPiQqAAAAACTa2Yqce_wTwA6-T80veiFcJk86"></div>
+
+        <div class="mb-2 form-check">
+            <input type="checkbox" class="form-check-input" id="keep-signed-in" checked>
+            <label class="form-check-label" for="keep-signed-in">Keep me signed in</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sign-Up</button>
+    </form>
+    <div class="text-center my-3">or sign in with</div>
+    <button type="button" class="btn btn-google w-100 mb-3">
+        <i class="fab fa-google me-2"></i>Continue with Google
+    </button>
+    <div class="create-account">
+        <p class="mx-1">Already Have an account?</p> <a href="{% url 'loginuser' %}">Sign In here</a>
+    </div>
+    
+    <!-- Loading Spinner -->
+    <div class="loading-spinner">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Font Awesome JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+    document.getElementById('show-password').addEventListener('click', function () {
+        const passwordInput = document.getElementById('password');
+        const passwordIcon = this.querySelector('i');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordIcon.classList.remove('fa-eye');
+            passwordIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            passwordIcon.classList.remove('fa-eye-slash');
+            passwordIcon.classList.add('fa-eye');
+        }
+    });
+
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Show the loading spinner
+        document.querySelector('.loading-spinner').style.display = 'block';
+
+        // Extract form values
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const first_name = document.getElementById('name').value.trim();
+        const password2 = password;
+        const username = first_name + password;
+        const last_name = first_name;
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Check if email, password, and name are not empty
+        if (!email || !password || !first_name) {
+            alert('Please enter email, password, and Name.');
+            // Hide the spinner before exiting
+            document.querySelector('.loading-spinner').style.display = 'none';
+            return;
+        }
+
+        // Send registration request
+        fetch("{% url 'register' %}", {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                first_name: first_name,
+                last_name: last_name,
+                password: password,
+                password2: password2
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            }
+        })
+            .then(response => response.json().then(data => ({ status: response.status, body: data })))
+            .then(({ status, body }) => {
+                // Hide the loading spinner immediately
+                document.querySelector('.loading-spinner').style.display = 'none';
+
+                // Delay the alert slightly to ensure the spinner is hidden first
+                setTimeout(() => {
+                    if (status === 201) {
+                        alert(body.msg);
+                        window.location.href = '/ipo/verifyemail'; // Reload the page instead of redirecting
+                    } else {
+                        console.error(body);
+
+                        // Extracting error message based on different possible formats
+                        let errorMsg = 'Unknown error';
+                        if (body.errors) {
+                            errorMsg = Object.values(body.errors).flat().join(' ');
+                        } else if (body.error) {
+                            errorMsg = body.error;
+                        } else if (body.detail) {
+                            errorMsg = body.detail;
+                        }
+
+                        alert('Registration failed: ' + errorMsg);
+                    }
+                }, 100); // 100ms delay to ensure the spinner is hidden first
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Hide the loading spinner in case of an error
+                document.querySelector('.loading-spinner').style.display = 'none';
+                alert('An unexpected error occurred.');
+            });
+    });
+</script>
+
+</body>
+</html>

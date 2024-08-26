@@ -222,7 +222,7 @@
 <div class="container" id="manageipo-content" style="display: none;">
     <div class="table-wrapper">
         <div class="table-title">
-            <div class="row">
+            <div class="row" style="background-color: white;">
                 <div class="col-sm-6">
                     <h2>Upcommin IPO|<b>Dashboard</b></h2>
                 </div>
@@ -255,7 +255,7 @@
                     <td>{{i.close}}</td>
                     <td>{{i.issue_size}}</td>
                     <td>{{i.issue_type}}</td>
-                    <td>{{i.listing_date}}</td>
+                    <td>{{i.second_listing_date}}</td>
                     <td>{{i.status}}</td>
                     <td>
                         <a href="#editEmployeeModal" class="edit" data-toggle="modal"><button type="button" class="btn btn-primary">Update</button></a>
@@ -286,38 +286,40 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const accessToken = localStorage.getItem('access_token');
+   document.addEventListener('DOMContentLoaded', function() {
+    const accessToken = localStorage.getItem('access_token');
 
-        if (!accessToken) {
-            // If there's no token, show an alert and redirect to the login page
-            alert('Please login first to access this page.');
-            window.location.href = "{% url 'admin' %}"; // Redirect to login page
-        } else {
-            // If token is present, check the validity by making an authenticated request
-            fetch("{% url 'tokenAuthenticate' %}", {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show the dashboard content
-                    document.getElementById('manageipo-content').style.display = 'block';
-                } else {
-                    // Handle unauthorized response
-                    alert('Session expired or invalid. Please login again.');
-                    window.location.href = "{% url 'admin' %}"; // Redirect to login page
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+    if (!accessToken) {
+        // If there's no token, show an alert and redirect to the login page
+        alert('Please login first to access this page.');
+        window.location.href = "{% url 'admin' %}"; // Redirect to login page
+    } else {
+        // If token is present, check the validity and admin status by making an authenticated request
+        fetch("{% url 'tokenAuthenticate' %}", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.is_authenticated && data.is_admin) {
+                // Show the dashboard content
+                document.getElementById('manageipo-content').style.display = 'block';
+            } else {
+                // Handle unauthorized response or non-admin user
+                alert('You do not have admin privileges. Please login with an admin account.');
                 window.location.href = "{% url 'admin' %}"; // Redirect to login page
-            });
-        }
-    });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+            window.location.href = "{% url 'admin' %}"; // Redirect to login page
+        });
+    }
+});
+
 </script>
 
 {% endblock %}

@@ -14,4 +14,5 @@ urlpatterns = [
      path('shareholding',views.shareholding,name='shareholding'),
      path('pros_cons',views.pros_cons,name='pros_cons'),
      path('Ratings',views.Ratings,name='Ratings'),
+     path('Financials',views.Financials,name='Financials.html'),
 ]

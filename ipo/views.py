@@ -1,4 +1,6 @@
 # ipo/views.py
+from multiprocessing import context
+from .models import IPOInfo
 from django.shortcuts import render
 from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -9,7 +11,11 @@ def ipo(request):
     return render(request, 'index.html')
 
 def upcomming(request):
-    return render(request, 'upcomming.html')
+    upcomming = IPOInfo.objects.all()
+    context={
+               'upcomming' : upcomming
+    }
+    return render(request, 'upcomming.html', context)
 
 def sharkinvestor(request):
     return render(request,'sharkinvestor.html')

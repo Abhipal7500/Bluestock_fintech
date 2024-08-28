@@ -1,6 +1,6 @@
 <!-- home.html -->
 
-{% extends 'C:\Users\crazi\Desktop\bluestockfintech\ipo\templates\base\base.html' %}
+{% extends 'C:\Users\anura\Documents\GitHub\Bluestock_fintech\ipo\templates\base\base.html' %}
 {% load static %}
 {% block title %}Upcoming IPO{% endblock %}
 
@@ -13,7 +13,7 @@
       margin-bottom: 20px;
       background-color: #fff;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      height: 300px; /* Set a fixed height for the card */
+      height: 300px; <!--  Set a fixed height for the card-->
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -152,23 +152,24 @@ border: none;
 <div class="container">
     <div class="row">
         <!-- IPO cards go here -->
+         {% for i in upcomming %}
         <div class="col-md-4">
             <div class="ipo-card text-center">
               <div style="display: flex;
               justify-content: space-between;
               align-items: center;">
-                <img src="{% static 'ipo/assets/logo/Nova_ipo_logo.png' %}" alt="Nova Agritech Ltd.">
-                <h2 style="font-size: large;">Nova Agritech Ltd.</h2>
+                <img src="{{ i.company_logo_path }}" alt="{{i.company_name}}">
+                <h2 style="font-size: large;">{{i.company_name}}</h2>
               </div>
                 <div class="details">
-                    <p>PRICE BAND<br><span style="font-weight: 800; color: black;"> 39 - 41</span></p>
-                    <p>OPEN<br><span style="font-weight: 800; color: black;"> 2024-01-22</span></p>
-                    <p>CLOSE<br><span style="font-weight: 800; color: black;"> 2024-01-24</span></p>
+                    <p>PRICE BAND<br><span style="font-weight: 800; color: black;"> {{i.price_band}}</span></p>
+                    <p>OPEN<br><span style="font-weight: 800; color: black;"> {{i.open}}</span></p>
+                    <p>CLOSE<br><span style="font-weight: 800; color: black;"> {{i.close}}</span></p>
                 </div>
                 <div class="details">
-                    <p>ISSUE SIZE<br><span style="font-weight: 800; color: black;"> 143.81 Cr.</span></p>
-                    <p>ISSUE TYPE<br><span style="font-weight: 800; color: black;">  Built</span></p>
-                    <p>LISTING DATEg<br><span style="font-weight: 800; color: black;"> 2024-01-30</span></p>
+                    <p>ISSUE SIZE<br><span style="font-weight: 800; color: black;"> {{i.issue_size}}</span></p>
+                    <p>ISSUE TYPE<br><span style="font-weight: 800; color: black;"> {{i.issue_type}}</span></p>
+                    <p>LISTING DATEg<br><span style="font-weight: 800; color: black;"> {{i.listing_date}}</span></p>
                 </div>
               <div style="text-align: left;">
                 <button class="btn btn-rhp">RHP</button>
@@ -176,8 +177,10 @@ border: none;
               </div>
             </div>
         </div>
-        
-      <!-- card 2 -->
+            {% endfor %}
+      
+        <!-- card 2 -->
+         <!--
         <div class="col-md-4">
           <div class="ipo-card text-center">
             <div style="display: flex;
@@ -202,7 +205,9 @@ border: none;
             </div>
           </div>
       </div>
+      -->
       <!-- Card-3 -->
+       <!-- 
       <div class="col-md-4">
         <div class="ipo-card text-center">
           <div style="display: flex;
@@ -227,7 +232,9 @@ border: none;
           </div>
         </div>
     </div>
+    -->
     <!-- card 4 -->
+     <!--
     <div class="col-md-4">
       <div class="ipo-card text-center">
         <div style="display: flex;
@@ -252,9 +259,10 @@ border: none;
         </div>
       </div>
   </div>
+  -->
 
   <!-- card 5 -->
-
+   <!--
   <div class="col-md-4">
             <div class="ipo-card text-center">
               <div style="display: flex;
@@ -279,9 +287,9 @@ border: none;
               </div>
             </div>
         </div>
-
+      -->
   <!-- card 6 -->
-   
+   <!--
   <div class="col-md-4">
     <div class="ipo-card text-center">
       <div style="display: flex;
@@ -305,11 +313,12 @@ border: none;
         <button class="btn btn-drhp">DRHP</button>
       </div>
     </div>
-</div>
-
+  </div>
+-->
         <!-- Add more IPO cards here as needed -->
 
        <!-- card 7 -->
+        <!--
         <div class="col-md-4">
           <div class="ipo-card text-center">
             <div style="display: flex;
@@ -336,7 +345,9 @@ border: none;
             </div>
           </div>
         </div>
+      -->
         <!-- card 8 -->
+         <!--
         <div class="col-md-4">
           <div class="ipo-card text-center">
             <div style="display: flex;
@@ -363,7 +374,9 @@ border: none;
             </div>
           </div>
         </div>
+      -->
        <!-- card 9 -->
+        <!--
         <div class="col-md-4">
           <div class="ipo-card text-center">
             <div style="display: flex;
@@ -390,12 +403,12 @@ border: none;
             </div>
           </div>
         </div>
-    </div>
-    
+         -->
+    </div> 
   </div>
 <br>
 <!-- This is FAQ section -->
- <!-- Bhai yahasey FAQ section add kiya hu -->   
+ <!-- From here FAQ section is added -->   
     <div class="wrapper">
         <div class="top"> <bold><h2>Frequently asked questions ?</h2></bold>
         <p>Find Answers to your common questions that comes in your mind about IPO</p></div><br><br>

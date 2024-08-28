@@ -1,6 +1,6 @@
 # ipo/views.py
 from multiprocessing import context
-from .models import IPOInfo
+from customadmin.models import IPOInfo
 from django.shortcuts import render
 from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode

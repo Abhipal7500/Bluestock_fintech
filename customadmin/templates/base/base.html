@@ -12,7 +12,7 @@
     <style>
         body {
             color: #566787;
-            font-family: 'Varela Round', sans-serif;
+            font-family: 'poppins';
             font-size: 13px;
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
@@ -145,18 +145,15 @@
             align-items: center;
         }
 
-        .sidebar-sticky h5 {
+        .sidebar-sticky h4 {
             color: rgba(90, 103, 186, 1);
-            width: 109px;
             height: auto;
-            font-size: 11px;
+            font-size: 14px;
             font-style: Bold;
             text-align: left;
             font-family: Poppins;
             font-weight: 700;
-            line-height: 11px;
-            font-stretch: normal;
-            text-decoration: none;
+            
         }
         .h6{
         
@@ -175,7 +172,8 @@
     text-decoration: none;
         }
     .p6{
-    color:  rgba(8, 36, 49, 1);
+    color: rgba(39, 50, 64, 1);
+    opacity: 0.50;
     width: 138px;
     height: auto;
     font-size: 12px;
@@ -187,6 +185,9 @@
     font-stretch: normal;
     text-decoration: none;
         }
+        .w-50{
+            width: 63% !important;
+        }
     </style>
 </head>
 <body>
@@ -194,38 +195,38 @@
         <div class="row" style="display: flex;">
             <nav id="sidebar" class="sidebar">
                 <div class="sidebar-sticky">
-                    <div style="display: flex;justify-content: center;align-items: center; height: 32px;">
-                        <h5>Bluestock Fintech</h5>
+                    <div style="display: flex;justify-content: center;align-items: end; height: 32px;">
+                        <h4>Bluestock Fintech</h4>
                     </div>
                     <hr />
                     <div>
-                        <div style="display:flex; padding-left:47px;">
+                        <div style="display:flex; padding-left:38px;">
                             <h6 class="h6">MENU</h6>
                         </div>
                         <div style="display: flex;justify-content: center;align-items: center;">
                             <ul class="nav" style="display: flow-root;    padding-right: 19px;">
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'dashboard' %}">
-                                        <i class="fas fa-tachometer-alt"></i>
+                                        <i class="fas fa-tachometer-alt" style="color:  rgb(148 148 148);"></i>
                                         <span class="p6">Dashboard</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'manageipo' %}">
-                                        <i class="fas fa-briefcase"></i>
+                                        <i class="fas fa-briefcase" style="color:  rgb(148 148 148);"></i>
                                        <span class="p6">Manage IPO</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">
-                                        <i class="fas fa-file-alt"></i>
+                                        <i class="fas fa-file-alt" style="color:  rgb(148 148 148);"></i>
                                         <span class="p6">IPO Subscription</span>
                                        
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">
-                                        <i class="fas fa-list-alt"></i>
+                                        <i class="fas fa-list-alt" style="color:  rgb(148 148 148);"></i>
                                         <span class="p6">IPO Allotment</span>
                                       
                                     </a>
@@ -233,34 +234,34 @@
                             </ul>
                         </div>
                     </div>
-                    <div style="display:flex; padding-left:47px;">
+                    <div style="display:flex; padding-left:38px;">
                         <h6 class="h6">OTHERS</h6>
                     </div>
                     <div style="display: flex;justify-content: center;align-items: center; ">
                         <ul class="nav" style="display: flow-root; padding-right: 41px;">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <i class="fas fa-cogs"></i>
+                                    <i class="fas fa-cogs" style="color:  rgb(148 148 148);"></i>
                                     <span class="p6">Settings</span>
                                   
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <i class="fas fa-plug"></i>
+                                    <i class="fas fa-plug" style="color:  rgb(148 148 148);"></i>
                                     <span class="p6">API Manager</span>
                                  
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-user" style="color:  rgb(148 148 148);"></i>
                                     <span class="p6">Accounts</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <i class="fas fa-question-circle"></i>
+                                    <i class="fas fa-question-circle" style="color:  rgb(148 148 148);"></i>
                                     <span class="p6">Helps</span>
                                     
                                 </a>
@@ -272,27 +273,31 @@
 
             <div class="main-content">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" style="padding-left: 10px; padding-right: 15px;">
-                    <form class="d-flex w-50">
-                        <input class="form-control me-2 mx-1" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-outline-success" type="submit">
-                            <i class="fas fa-search"></i>
+                    <form class="d-flex w-50" style="font-family: poppins;">
+                        <input class="form-control me-2 mx-1" type="search" placeholder="Search" aria-label="Search" style="border-color: white;
+    background-color:rgba(245, 246, 250, 1);    margin-left: 1.25rem !important;" />
+                        <button class="btn btn-outline-success" type="submit" style="border-color: white;
+    background-color:rgba(245, 246, 250, 1);margin-left: -7px;">
+                            <i class="fas fa-search" style="color: darkgray;"></i>
                         </button>
                     </form>
                     <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group mr-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                                View Report
-                            </button>
-                        </div>
+                      
                         <div class="dropdown">
-                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Hi, Vishal
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span style="color: rgba(31,56,76,255); font-family: poppins;"> Hi, Vishal</span>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </div>
-                        </div>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </div>
+                          <div style="    display: flex;
+                          justify-content: center;
+                          align-items: center;">
+                           <i class="fa-solid fa-bell"></i>
+                          </div>
                     </div>
                 </div>
                 <div style="padding-left: 15px; padding-right: 15px;">
@@ -313,11 +318,11 @@
         var myChart = new Chart(xyz, {
             type: "doughnut",
             data: {
-                labels: ["Upcoming", "New Listed", "Ongoing"],
+               
                 datasets: [
                     {
                         data: [15, 25, 2],
-                        backgroundColor: ["#36a2eb", "#ff6384", "#ffcd56"],
+                        backgroundColor: ["rgba(90,106,207,255)", "rgba(133,147,237,255)", "rgba(199,206,255,255)"],
                         hoverOffset: 4,
                     },
                 ],

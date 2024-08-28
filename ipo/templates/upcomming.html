@@ -1,19 +1,19 @@
 <!-- home.html -->
 
-{% extends 'C:\Users\anura\Documents\GitHub\Bluestock_fintech\ipo\templates\base\base.html' %}
+{% extends 'C:\Users\crazi\Desktop\bluestockfintech\ipo\templates\base\base.html' %}
 {% load static %}
 {% block title %}Upcoming IPO{% endblock %}
 
 {% block content %}
 <style>
   .ipo-card{
-      border: 1px solid #ddd;
+      border: 0px solid #ddd;
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 20px;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      height: 300px; <!--  Set a fixed height for the card-->
+      background-color: white;
+     
+      height: 300px; 
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -26,7 +26,8 @@
   .ipo-card h2 {
       font-size: 1.5rem;
       margin-bottom: 10px;
-      color: #4a90e2;
+      color: rgba(65,75,234,255);
+      font-weight: 600;
   }
   .ipo-card p {
       margin-bottom: 5px;
@@ -40,6 +41,7 @@
   }
   .ipo-card .details p {
       margin-bottom: 0;
+      font-family: 'poppins';
   }
   .ipo-card .btn {
       margin: 5px;
@@ -49,16 +51,17 @@
   }
   .btn-rhp {
       background-color: #ffffff;
-      color: #4a90e2;
-      border: 1px solid #4a90e2;
+      color:rgba(65,75,234,255);
+      border: 1px solid rgba(65,75,234,255)
   }
   .btn-drhp {
-      background-color: #ff6b6b;
+      background-color:rgba(240,85,55,255);
       color: #ffffff;
-      border: 1px solid #ff6b6b;
+      border: 1px solid rgba(240,85,55,255);
   }
   body{
-    background-color: #eceef4;
+    background-color: #f5f5f5;
+    font-family: 'poppins;'
   }
 </style> 
 
@@ -147,29 +150,29 @@ border: none;
 
 <div class="mx-5 my-3">
     <h3 style="color: black;font-weight:600;">Upcoming IPO</h3>
-    <p>Companies that have filed for an IPO with SEBI. Few details might be disclosed by the companies later.</p>
+    <p style="color: black; opacity: 0.7;">Companies that have filed for an IPO with SEBI. Few details might be disclosed by the companies later.</p>
 </div>
 <div class="container">
     <div class="row">
         <!-- IPO cards go here -->
          {% for i in upcomming %}
         <div class="col-md-4">
-            <div class="ipo-card text-center">
+            <div class="ipo-card text-center" >
               <div style="display: flex;
               justify-content: space-between;
               align-items: center;">
-                <img src="{{ i.company_logo_path }}" alt="{{i.company_name}}">
-                <h2 style="font-size: large;">{{i.company_name}}</h2>
+                <img src="{{ i.company_logo_path }}" alt="logo">
+                <h2 style="font-size: large;font-family: 'poppins'; padding-right: 29px;">{{i.company_name}}</h2>
               </div>
                 <div class="details">
-                    <p>PRICE BAND<br><span style="font-weight: 800; color: black;"> {{i.price_band}}</span></p>
+                    <p>PRICE BAND<br><span style="font-weight: 800; color: black;">Rs {{i.price_band}}</span></p>
                     <p>OPEN<br><span style="font-weight: 800; color: black;"> {{i.open}}</span></p>
                     <p>CLOSE<br><span style="font-weight: 800; color: black;"> {{i.close}}</span></p>
                 </div>
                 <div class="details">
-                    <p>ISSUE SIZE<br><span style="font-weight: 800; color: black;"> {{i.issue_size}}</span></p>
+                    <p>ISSUE SIZE<br><span style="font-weight: 800; color: black;"> {{i.issue_size}} Cr.</span></p>
                     <p>ISSUE TYPE<br><span style="font-weight: 800; color: black;"> {{i.issue_type}}</span></p>
-                    <p>LISTING DATEg<br><span style="font-weight: 800; color: black;"> {{i.listing_date}}</span></p>
+                    <p>LISTING DATE<br><span style="font-weight: 800; color: black;"> {{i.first_listing_date}}</span></p>
                 </div>
               <div style="text-align: left;">
                 <button class="btn btn-rhp">RHP</button>

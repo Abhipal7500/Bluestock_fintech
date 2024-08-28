@@ -3,60 +3,87 @@
 {% load static %}
 
 {% block content %}
+<style>
+.mainboard{
+    color: rgba(0, 0, 0, 1);
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 22px;
+    font-stretch: normal;
+    text-decoration: none;
+}
+.dashtext{
+    padding-left: 39px;
+    color: rgba(31, 56, 76, 1);
+    font-size: 18px;
+    font-style: Medium;
+    font-family: Poppins;
+    font-weight: 500;
+    line-height: 23px;
+    font-stretch: normal;
+    text-decoration: none;
+}
+</style>
 <div id="dashboard-content" style="display: none;">
-    <h5><b>Dashboard</b></h5>
+    <h5 class="dashtext">Dashboard</h5>
     <div style="display: flex; justify-content: space-between">
         <div class="card mr-2" style="padding: 20px">
-            <div class="card-header" style="padding-left: 0%">IPO Dashboard India</div>
-            <p>20 IPO in Gain</p>
+            <div class="card-header mainboard" >IPO Dashboard India</div>
+            <p style="    margin-left: 20px; font-style: poppins;"><i class="fa-solid fa-arrow-up mx-1" style="color: lightgreen;"></i>20 IPO in Gain</p>
         </div>
 
         <!-- Quick link -->
         <div class="card mr-2">
             <div class="quick-links">
-                <div class="card-header" style="padding-left: 0%">Quick Link</div>
+                <div class="card-header mainboard" style="padding-left: 0%;">Quick Link</div>
                 <p>Adipiscing elit, sed do eiusmod tempor</p>
                 <div class="link-item">
                     <div class="link-text">
-                        <img src="{% static 'nse-india-logo.png' %}" alt="NSE India" />
+                        <img src="{% static 'ipo\assets\logo\NSE.png' %}" alt="NSE India" />
                         <span>NSE India</span>
                     </div>
-                    <a href="#" class="text-primary">Visit Now</a>
+                    <a href="#" style="color: #6c757d;">Visit Now</a>
                 </div>
                 <div class="link-item">
                     <div class="link-text">
-                        <img src="{% static 'bse-india-logo.png' %}" alt="BSE India" />
+                        <img src="{% static 'ipo\assets\logo\BSE.png' %}" alt="BSE India" />
                         <span>BSE India</span>
                     </div>
-                    <a href="#" class="text-primary">Visit Now</a>
+                    <a href="#" style="color: #6c757d;">Visit Now</a>
                 </div>
                 <div class="link-item">
                     <div class="link-text">
-                        <img src="{% static 'sebi-logo.png' %}" alt="SEBI" />
+                        <img src="{% static 'ipo\assets\logo\SEBI.png' %}" alt="SEBI" />
                         <span>SEBI</span>
                     </div>
-                    <a href="#" class="text-primary">Visit Now</a>
+                    <a href="#" style="color: #6c757d;">Visit Now</a>
                 </div>
                 <div class="link-item">
                     <div class="link-text">
-                        <img src="{% static 'money-control-logo.png' %}" alt="Money Control" />
+                        <img src="{% static 'ipo\assets\logo\Money Control.png' %}" alt="Money Control" />
                         <span>Money Control</span>
                     </div>
-                    <a href="#" class="text-primary">Visit Now</a>
+                    <a href="#" style="color: #6c757d;">Visit Now</a>
                 </div>
             </div>
         </div>
 
         <!-- Main Board -->
-        <div class="card mr-2" style="padding: 20px">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="card-header">Main Board IPO</div>
+        <div class="card mr-2" style="padding: 11px">
+            <div style="display: flex; justify-content: space-between;">
+                <div class="card-header mainboard" >Main Board IPO</div>
+               
                 <div class="card-header">
-                    <button type="button" class="btn btn-outline-primary">View Report</button>
+                    <button type="button" class="btn" style="color: rgba(90,106,207,255); border-color: rgba(221,228,240,255); font-family: poppins;     font-size: small;">View Report</button>
                 </div>
             </div>
+            <p style="margin-left: 20px;">From 01 Jan 2014</p>
             <div class="card-body">
-                <canvas id="myChart"></canvas>
+                <div style="padding-left: 50px;    height: 160px;"><canvas id="myChart"></canvas></div>
+                
                 <div class="mt-3" style="display: flex">
                     <p class="mx-1"><strong>Upcoming:</strong> 15</p>
                     <p class="mx-1"><strong>New Listed:</strong> 25</p>

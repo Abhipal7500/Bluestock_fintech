@@ -43,6 +43,9 @@ def pros_cons(request):
 
 def Ratings(request):
     return render( request , 'Ratings.html')
+
+def Financials(request):
+    return render(request, 'Financials.html')
     
 def loginuser(request):
     return render(request, 'loginuser.html')    
